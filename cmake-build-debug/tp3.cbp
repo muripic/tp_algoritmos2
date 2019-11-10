@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="tp3"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/muripic/Documents/Algo2_TP3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main">
+				<Option output="/home/muripic/Documents/Algo2_TP3/cmake-build-debug/libgtest_main.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/muripic/Documents/Algo2_TP3/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 gtest_main"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main/fast">
+				<Option output="/home/muripic/Documents/Algo2_TP3/cmake-build-debug/libgtest_main.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/muripic/Documents/Algo2_TP3/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 gtest_main/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/muripic/Documents/Algo2_TP3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="correrTests">
+				<Option output="/home/muripic/Documents/Algo2_TP3/cmake-build-debug/correrTests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/muripic/Documents/Algo2_TP3/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 correrTests"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="correrTests/fast">
+				<Option output="/home/muripic/Documents/Algo2_TP3/cmake-build-debug/correrTests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/muripic/Documents/Algo2_TP3/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 correrTests/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/muripic/Documents/Algo2_TP3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest">
+				<Option output="/home/muripic/Documents/Algo2_TP3/cmake-build-debug/libgtest.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/muripic/Documents/Algo2_TP3/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 gtest"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest/fast">
+				<Option output="/home/muripic/Documents/Algo2_TP3/cmake-build-debug/libgtest.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/muripic/Documents/Algo2_TP3/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 gtest/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="correrTests-Wall">
+				<Option output="/home/muripic/Documents/Algo2_TP3/cmake-build-debug/correrTests-Wall" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/muripic/Documents/Algo2_TP3/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 correrTests-Wall"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="correrTests-Wall/fast">
+				<Option output="/home/muripic/Documents/Algo2_TP3/cmake-build-debug/correrTests-Wall" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/muripic/Documents/Algo2_TP3/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 correrTests-Wall/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="correrValgrind">
+				<Option working_dir="/home/muripic/Documents/Algo2_TP3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 correrValgrind"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/muripic/Documents/Algo2_TP3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/BaseDeDatos.cpp">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/BaseDeDatos.h">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/Consulta.cpp">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/Consulta.h">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/Driver.cpp">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/Driver.h">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/Registro.cpp">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/Registro.h">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/Tabla.cpp">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/Tabla.h">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/Tipos.h">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/modulos_basicos/linear_map.h">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/modulos_basicos/linear_map.hpp">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/modulos_basicos/linear_set.h">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/modulos_basicos/linear_set.hpp">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/modulos_basicos/linear_set_iterators.h">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/modulos_basicos/string_map.h">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/src/modulos_basicos/string_map.hpp">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/tests/driver_test.cpp">
+			<Option target="correrTests"/>
+			<Option target="correrTests-Wall"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/tests/gtest-1.8.1/gtest-all.cc">
+			<Option target="gtest"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/tests/gtest-1.8.1/gtest_main.cc">
+			<Option target="gtest_main"/>
+		</Unit>
+		<Unit filename="/home/muripic/Documents/Algo2_TP3/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
