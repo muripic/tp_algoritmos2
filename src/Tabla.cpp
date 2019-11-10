@@ -21,29 +21,34 @@ void Tabla::borrar(Valor &valor){
 }
 
 linear_set<NombreCampo>& Tabla::campos() const{
-    //COMPLETAR
+    return _diccColumnas.claves();
 }
 
 NombreCampo& Tabla::clave() const{
-    //COMPLETAR
+    return _clave;
 }
 
 linear_set<Registro>& Tabla::registros() const{
-    //COMPLETAR
+    return _registros;
 }
 
 bool Tabla::existeRegConClave(Valor &valor){
-    //COMPLETAR
+    if (_diccValorClave.count(valor) == 1){
+        return true;
+    } else{
+        return false;
+    }
+
 }
 
 Registro& Tabla::regPorClave(Valor &valor) const{
-    //COMPLETAR
+    return _diccValorClave.at(valor);
 }
 
 linear_set<Valor>& Tabla::valoresClave() const{
-    //COMPLETAR
+    return _diccValorClave.claves();
 }
 
 linear_map<linear_set<Registro>::iterator, Valor>& Tabla::obtenerColumna(NombreCampo &campo) const{
-    //COMPLETAR
+    // COMPLETAR
 }
