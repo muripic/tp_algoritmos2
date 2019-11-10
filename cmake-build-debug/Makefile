@@ -48,10 +48,10 @@ RM = /opt/clion-2019.2/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/muripic/Documents/Algo2_TP3
+CMAKE_SOURCE_DIR = /home/muripic/Documents/tp3-algo-ii-posta
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/muripic/Documents/Algo2_TP3/cmake-build-debug
+CMAKE_BINARY_DIR = /home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/muripic/Documents/Algo2_TP3/cmake-build-debug/CMakeFiles /home/muripic/Documents/Algo2_TP3/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug/CMakeFiles /home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/muripic/Documents/Algo2_TP3/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -325,35 +325,125 @@ src/Tabla.cpp.s:
 	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/src/Tabla.cpp.s
 .PHONY : src/Tabla.cpp.s
 
-tests/driver_test.o: tests/driver_test.cpp.o
+tests/01_registro_test.o: tests/01_registro_test.cpp.o
 
-.PHONY : tests/driver_test.o
+.PHONY : tests/01_registro_test.o
 
 # target to build an object file
-tests/driver_test.cpp.o:
-	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/driver_test.cpp.o
-	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/driver_test.cpp.o
-.PHONY : tests/driver_test.cpp.o
+tests/01_registro_test.cpp.o:
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/01_registro_test.cpp.o
+	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/01_registro_test.cpp.o
+.PHONY : tests/01_registro_test.cpp.o
 
-tests/driver_test.i: tests/driver_test.cpp.i
+tests/01_registro_test.i: tests/01_registro_test.cpp.i
 
-.PHONY : tests/driver_test.i
+.PHONY : tests/01_registro_test.i
 
 # target to preprocess a source file
-tests/driver_test.cpp.i:
-	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/driver_test.cpp.i
-	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/driver_test.cpp.i
-.PHONY : tests/driver_test.cpp.i
+tests/01_registro_test.cpp.i:
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/01_registro_test.cpp.i
+	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/01_registro_test.cpp.i
+.PHONY : tests/01_registro_test.cpp.i
 
-tests/driver_test.s: tests/driver_test.cpp.s
+tests/01_registro_test.s: tests/01_registro_test.cpp.s
 
-.PHONY : tests/driver_test.s
+.PHONY : tests/01_registro_test.s
 
 # target to generate assembly for a file
-tests/driver_test.cpp.s:
-	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/driver_test.cpp.s
-	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/driver_test.cpp.s
-.PHONY : tests/driver_test.cpp.s
+tests/01_registro_test.cpp.s:
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/01_registro_test.cpp.s
+	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/01_registro_test.cpp.s
+.PHONY : tests/01_registro_test.cpp.s
+
+tests/02_tabla_test.o: tests/02_tabla_test.cpp.o
+
+.PHONY : tests/02_tabla_test.o
+
+# target to build an object file
+tests/02_tabla_test.cpp.o:
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/02_tabla_test.cpp.o
+	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/02_tabla_test.cpp.o
+.PHONY : tests/02_tabla_test.cpp.o
+
+tests/02_tabla_test.i: tests/02_tabla_test.cpp.i
+
+.PHONY : tests/02_tabla_test.i
+
+# target to preprocess a source file
+tests/02_tabla_test.cpp.i:
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/02_tabla_test.cpp.i
+	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/02_tabla_test.cpp.i
+.PHONY : tests/02_tabla_test.cpp.i
+
+tests/02_tabla_test.s: tests/02_tabla_test.cpp.s
+
+.PHONY : tests/02_tabla_test.s
+
+# target to generate assembly for a file
+tests/02_tabla_test.cpp.s:
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/02_tabla_test.cpp.s
+	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/02_tabla_test.cpp.s
+.PHONY : tests/02_tabla_test.cpp.s
+
+tests/03_basededatos_test.o: tests/03_basededatos_test.cpp.o
+
+.PHONY : tests/03_basededatos_test.o
+
+# target to build an object file
+tests/03_basededatos_test.cpp.o:
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/03_basededatos_test.cpp.o
+	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/03_basededatos_test.cpp.o
+.PHONY : tests/03_basededatos_test.cpp.o
+
+tests/03_basededatos_test.i: tests/03_basededatos_test.cpp.i
+
+.PHONY : tests/03_basededatos_test.i
+
+# target to preprocess a source file
+tests/03_basededatos_test.cpp.i:
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/03_basededatos_test.cpp.i
+	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/03_basededatos_test.cpp.i
+.PHONY : tests/03_basededatos_test.cpp.i
+
+tests/03_basededatos_test.s: tests/03_basededatos_test.cpp.s
+
+.PHONY : tests/03_basededatos_test.s
+
+# target to generate assembly for a file
+tests/03_basededatos_test.cpp.s:
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/03_basededatos_test.cpp.s
+	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/03_basededatos_test.cpp.s
+.PHONY : tests/03_basededatos_test.cpp.s
+
+tests/04_driver_test.o: tests/04_driver_test.cpp.o
+
+.PHONY : tests/04_driver_test.o
+
+# target to build an object file
+tests/04_driver_test.cpp.o:
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/04_driver_test.cpp.o
+	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/04_driver_test.cpp.o
+.PHONY : tests/04_driver_test.cpp.o
+
+tests/04_driver_test.i: tests/04_driver_test.cpp.i
+
+.PHONY : tests/04_driver_test.i
+
+# target to preprocess a source file
+tests/04_driver_test.cpp.i:
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/04_driver_test.cpp.i
+	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/04_driver_test.cpp.i
+.PHONY : tests/04_driver_test.cpp.i
+
+tests/04_driver_test.s: tests/04_driver_test.cpp.s
+
+.PHONY : tests/04_driver_test.s
+
+# target to generate assembly for a file
+tests/04_driver_test.cpp.s:
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/04_driver_test.cpp.s
+	$(MAKE) -f CMakeFiles/correrTests-Wall.dir/build.make CMakeFiles/correrTests-Wall.dir/tests/04_driver_test.cpp.s
+.PHONY : tests/04_driver_test.cpp.s
 
 tests/gtest-1.8.1/gtest-all.o: tests/gtest-1.8.1/gtest-all.cc.o
 
@@ -437,9 +527,18 @@ help:
 	@echo "... src/Tabla.o"
 	@echo "... src/Tabla.i"
 	@echo "... src/Tabla.s"
-	@echo "... tests/driver_test.o"
-	@echo "... tests/driver_test.i"
-	@echo "... tests/driver_test.s"
+	@echo "... tests/01_registro_test.o"
+	@echo "... tests/01_registro_test.i"
+	@echo "... tests/01_registro_test.s"
+	@echo "... tests/02_tabla_test.o"
+	@echo "... tests/02_tabla_test.i"
+	@echo "... tests/02_tabla_test.s"
+	@echo "... tests/03_basededatos_test.o"
+	@echo "... tests/03_basededatos_test.i"
+	@echo "... tests/03_basededatos_test.s"
+	@echo "... tests/04_driver_test.o"
+	@echo "... tests/04_driver_test.i"
+	@echo "... tests/04_driver_test.s"
 	@echo "... tests/gtest-1.8.1/gtest-all.o"
 	@echo "... tests/gtest-1.8.1/gtest-all.i"
 	@echo "... tests/gtest-1.8.1/gtest-all.s"

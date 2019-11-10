@@ -1,7 +1,7 @@
-/home/muripic/Documents/Algo2_TP3/cmake-build-debug/CMakeFiles/gtest_main.dir
-/home/muripic/Documents/Algo2_TP3/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/muripic/Documents/Algo2_TP3/cmake-build-debug/CMakeFiles/correrTests.dir
-/home/muripic/Documents/Algo2_TP3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/muripic/Documents/Algo2_TP3/cmake-build-debug/CMakeFiles/gtest.dir
-/home/muripic/Documents/Algo2_TP3/cmake-build-debug/CMakeFiles/correrTests-Wall.dir
-/home/muripic/Documents/Algo2_TP3/cmake-build-debug/CMakeFiles/correrValgrind.dir
+/home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug/CMakeFiles/gtest_main.dir
+/home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug/CMakeFiles/correrTests.dir
+/home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug/CMakeFiles/gtest.dir
+/home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug/CMakeFiles/correrTests-Wall.dir
+/home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug/CMakeFiles/correrValgrind.dir

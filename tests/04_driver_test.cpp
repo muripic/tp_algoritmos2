@@ -26,18 +26,6 @@ set<string> proj4(const Respuesta& r, NombreCampo c1, NombreCampo c2,
     return s;
 }
 
-TEST(test_registro, registro){
-    Registro nuevo;
-    ASSERT_EQ(nuevo.campos().size(), 0);
-    nuevo.definir("Nombre", "Homer");
-    ASSERT_EQ(nuevo.campos().size(), 1);
-    ASSERT_EQ(nuevo["Nombre"], "Homer");
-    nuevo.definir("Apellido", "Simpson");
-    ASSERT_EQ(nuevo.campos().size(), 2);
-    nuevo.definir("Nombre", "Lisa");
-    ASSERT_EQ(nuevo["Nombre"], "Lisa");
-}
-
 TEST(test_bd, test_from_basico) {
     Driver d;
     d.leerDataset("personas");
@@ -406,4 +394,3 @@ TEST(test_bd, test_inter_tablas_distintas) {
     ASSERT_EQ(proj4(r1, "mes", "linea", "estacion", "cantidad"),
               proj4(r3, "mes", "linea", "estacion", "cantidad"));
 }
-

@@ -43,10 +43,10 @@ RM = /opt/clion-2019.2/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/muripic/Documents/Algo2_TP3
+CMAKE_SOURCE_DIR = /home/muripic/Documents/tp3-algo-ii-posta
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/muripic/Documents/Algo2_TP3/cmake-build-debug
+CMAKE_BINARY_DIR = /home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug
 
 # Utility rule file for correrValgrind.
 
@@ -71,6 +71,6 @@ CMakeFiles/correrValgrind.dir/clean:
 .PHONY : CMakeFiles/correrValgrind.dir/clean
 
 CMakeFiles/correrValgrind.dir/depend:
-	cd /home/muripic/Documents/Algo2_TP3/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/muripic/Documents/Algo2_TP3 /home/muripic/Documents/Algo2_TP3 /home/muripic/Documents/Algo2_TP3/cmake-build-debug /home/muripic/Documents/Algo2_TP3/cmake-build-debug /home/muripic/Documents/Algo2_TP3/cmake-build-debug/CMakeFiles/correrValgrind.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/muripic/Documents/tp3-algo-ii-posta /home/muripic/Documents/tp3-algo-ii-posta /home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug /home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug /home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug/CMakeFiles/correrValgrind.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/correrValgrind.dir/depend
 

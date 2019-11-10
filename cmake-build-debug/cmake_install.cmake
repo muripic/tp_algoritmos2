@@ -1,4 +1,4 @@
-# Install script for directory: /home/muripic/Documents/Algo2_TP3
+# Install script for directory: /home/muripic/Documents/tp3-algo-ii-posta
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/muripic/Documents/Algo2_TP3/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/muripic/Documents/tp3-algo-ii-posta/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
