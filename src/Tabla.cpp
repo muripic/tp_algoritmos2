@@ -46,5 +46,5 @@ const linear_set<Valor>& Tabla::valoresClave(){
 }
 
 const linear_map<linear_set<Registro>::iterator, Valor>& Tabla::obtenerColumna(const NombreCampo& campo){
-    // COMPLETAR
+    return *_diccColumnas.at(valor);
 }
