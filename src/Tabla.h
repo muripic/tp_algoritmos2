@@ -12,16 +12,16 @@ using namespace std;
 
 class Tabla {
 public:
-    Tabla(linear_set<NombreCampo>& campos, NombreCampo& clave);
+    Tabla(linear_set<NombreCampo>& campos, NombreCampo clave);
     void insertar(Registro &registro);
     void borrar(Valor &valor);
-    linear_set<NombreCampo>& campos() const;
-    NombreCampo& clave() const;
-    linear_set<Registro>& registros() const;
-    bool existeRegConClave(Valor &valor);
-    Registro& regPorClave(Valor &valor) const;
-    linear_set<Valor>& valoresClave() const;
-    linear_map<linear_set<Registro>::iterator, Valor>& obtenerColumna(NombreCampo &campo) const;
+    const linear_set<NombreCampo>& campos();
+    const NombreCampo& clave();
+    const linear_set<Registro>& registros();
+    bool existeRegConClave(Valor valor);
+    const Registro& regPorClave(Valor valor);
+    const linear_set<Valor>& valoresClave();
+    const linear_map<linear_set<Registro>::iterator, Valor>& obtenerColumna(NombreCampo campo);
 
 private:
     NombreCampo _clave;

@@ -17,7 +17,7 @@ public:
     BaseDeDatos();
     void agregarTabla(NombreTabla& tabla, NombreCampo& clave, linear_set<NombreCampo>& campos);
     void agregarRegistro(Registro& registro, NombreTabla& tabla);
-    string_map<Tabla>& tablas() const;
+    const string_map<Tabla>& tablas();
     void eliminarTabla(NombreTabla& tabla);
     void eliminarRegistro(Valor &valor, NombreTabla& tabla);
     linear_set<Registro> realizarConsulta(Consulta& consulta);

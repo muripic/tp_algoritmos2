@@ -3,7 +3,7 @@
 Registro::Registro() : _registro() {
 }
 
-linear_set<NombreCampo> Registro::campos() const {
+const linear_set<NombreCampo>& Registro::campos() {
     return _registro.claves();
 }
 

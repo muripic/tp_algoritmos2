@@ -12,7 +12,7 @@ class Registro {
 public:
     Registro();
     void definir(const NombreCampo& campo, const Valor& valor);
-    linear_set<NombreCampo> campos() const;
+    const linear_set<NombreCampo>& campos();
     Valor& operator[](const NombreCampo& campo);
 
 private:

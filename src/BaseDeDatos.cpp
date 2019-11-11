@@ -12,7 +12,7 @@ void BaseDeDatos::agregarRegistro(Registro& registro, NombreTabla& tabla){
     //COMPLETAR
 }
 
-string_map<Tabla>& BaseDeDatos::tablas() const{
+const string_map<Tabla>& BaseDeDatos::tablas(){
     //COMPLETAR
 }
 

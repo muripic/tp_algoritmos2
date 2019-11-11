@@ -191,7 +191,7 @@ int string_map<T>::size() const {
 }
 
 template<typename T>
-linear_set<string> string_map<T>::claves() const {
+const linear_set<string>& string_map<T>::claves(){
     return _claves;
 }
 

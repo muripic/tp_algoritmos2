@@ -1,6 +1,6 @@
 #include "Tabla.h"
 
-Tabla::Tabla(linear_set<NombreCampo>& campos, NombreCampo& clave) : _clave(clave), _registros(), _diccValorClave(), _diccColumnas() {
+Tabla::Tabla(linear_set<NombreCampo>& campos, NombreCampo clave) : _clave(clave), _registros(), _diccValorClave(), _diccColumnas() {
     linear_set<NombreCampo>::iterator it = campos.begin();
     while (it != campos.end()){
         linear_map<linear_set<Registro>::iterator, Valor> nuevo;
@@ -20,35 +20,31 @@ void Tabla::borrar(Valor &valor){
     //COMPLETAR
 }
 
-linear_set<NombreCampo>& Tabla::campos() const{
+const linear_set<NombreCampo>& Tabla::campos(){
     return _diccColumnas.claves();
 }
 
-NombreCampo& Tabla::clave() const{
+const NombreCampo& Tabla::clave(){
     return _clave;
 }
 
-linear_set<Registro>& Tabla::registros() const{
+const linear_set<Registro>& Tabla::registros(){
     return _registros;
 }
 
-bool Tabla::existeRegConClave(Valor &valor){
-    if (_diccValorClave.count(valor) == 1){
-        return true;
-    } else{
-        return false;
-    }
+bool Tabla::existeRegConClave(Valor valor){
+    return _diccValorClave.count(valor) == 1;
 
 }
 
-Registro& Tabla::regPorClave(Valor &valor) const{
-    return _diccValorClave.at(valor);
+const Registro& Tabla::regPorClave(Valor valor){
+    return *_diccValorClave.at(valor);
 }
 
-linear_set<Valor>& Tabla::valoresClave() const{
+const linear_set<Valor>& Tabla::valoresClave(){
     return _diccValorClave.claves();
 }
 
-linear_map<linear_set<Registro>::iterator, Valor>& Tabla::obtenerColumna(NombreCampo &campo) const{
+const linear_map<linear_set<Registro>::iterator, Valor>& Tabla::obtenerColumna(NombreCampo campo){
     // COMPLETAR
 }
