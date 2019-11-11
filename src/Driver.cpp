@@ -4,7 +4,7 @@
 #include <sstream>
 
 #include "Driver.h"
-
+/*
 void Driver::crearTabla(NombreTabla tabla, vector<NombreCampo> campos,
                         NombreCampo clave) {
     COMPLETAR(crearTabla);
@@ -61,3 +61,4 @@ bool Driver::_leerLinea(ifstream& is, vector<string>& valores) const {
     return true;
 }
 
+*/

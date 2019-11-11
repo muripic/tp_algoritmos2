@@ -13,7 +13,7 @@ public:
     Registro();
     void definir(const NombreCampo& campo, const Valor& valor);
     const linear_set<NombreCampo>& campos();
-    Valor& operator[](const NombreCampo& campo);
+    const Valor& operator[](const NombreCampo& campo) const;
 
 private:
     string_map<Valor> _registro;

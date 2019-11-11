@@ -1,6 +1,6 @@
 #include "Tabla.h"
 
-Tabla::Tabla(linear_set<NombreCampo>& campos, NombreCampo clave) : _clave(clave), _registros(), _diccValorClave(), _diccColumnas() {
+Tabla::Tabla(linear_set<NombreCampo>& campos, const NombreCampo& clave) : _clave(clave), _registros(), _diccValorClave(), _diccColumnas() {
     linear_set<NombreCampo>::iterator it = campos.begin();
     while (it != campos.end()){
         linear_map<linear_set<Registro>::iterator, Valor> nuevo;
@@ -32,12 +32,12 @@ const linear_set<Registro>& Tabla::registros(){
     return _registros;
 }
 
-bool Tabla::existeRegConClave(Valor valor){
+bool Tabla::existeRegConClave(const Valor& valor){
     return _diccValorClave.count(valor) == 1;
 
 }
 
-const Registro& Tabla::regPorClave(Valor valor){
+const Registro& Tabla::regPorClave(const Valor& valor){
     return *_diccValorClave.at(valor);
 }
 
@@ -45,6 +45,6 @@ const linear_set<Valor>& Tabla::valoresClave(){
     return _diccValorClave.claves();
 }
 
-const linear_map<linear_set<Registro>::iterator, Valor>& Tabla::obtenerColumna(NombreCampo campo){
+const linear_map<linear_set<Registro>::iterator, Valor>& Tabla::obtenerColumna(const NombreCampo& campo){
     // COMPLETAR
 }
