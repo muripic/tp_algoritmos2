@@ -7,6 +7,7 @@
 #include "Registro.h"
 #include "modulos_basicos/string_map.h"
 #include "modulos_basicos/linear_set.h"
+#include <set>
 
 using namespace std;
 

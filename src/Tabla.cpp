@@ -17,7 +17,16 @@ void Tabla::insertar(Registro &registro){
 }
 
 void Tabla::borrar(Valor &valor){
-    //COMPLETAR
+    linear_set<Registro>::iterator itReg = _diccValorClave.at(valor);
+    linear_set<NombreCampo>::const_iterator itCampos = campos().begin();
+    while (itCampos != campos().end()){
+        (_diccColumnas.at(*itCampos)).erase(itReg);
+        ++itCampos;
+    }
+    _diccValorClave.erase(valor);
+    _registros.erase(*itReg); /*EliminarSiguiente(itReg). PROBLEMA: en linear map no está sobrecargado el metodo erase
+ * para que se le pueda pasar un iterador (como sí lo está en map de la STL).
+ * Igual, cambia la complejidad de la operación pero no del algoritmo*/
 }
 
 const linear_set<NombreCampo>& Tabla::campos(){
