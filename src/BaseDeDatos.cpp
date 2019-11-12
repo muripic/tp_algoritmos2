@@ -10,15 +10,15 @@ void BaseDeDatos::agregarTabla(NombreTabla& tabla, NombreCampo& clave, linear_se
 }
 
 void BaseDeDatos::agregarRegistro(Registro& registro, NombreTabla& tabla){
-    //COMPLETAR
+    _tablas.at(tabla).insertar(registro);
 }
 
 const string_map<Tabla>& BaseDeDatos::tablas(){
-    //COMPLETAR
+    return _tablas;
 }
 
 void BaseDeDatos::eliminarTabla(NombreTabla& tabla){
-    //COMPLETAR
+    _tablas.erase(tabla);
 }
 
 void BaseDeDatos::eliminarRegistro(Valor &valor, NombreTabla& tabla){
