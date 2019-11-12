@@ -22,9 +22,25 @@ void BaseDeDatos::eliminarTabla(NombreTabla& tabla){
 }
 
 void BaseDeDatos::eliminarRegistro(Valor &valor, NombreTabla& tabla){
-    //COMPLETAR
+    _tablas.at(tabla).borrar(valor);
 }
 
 linear_set<Registro> BaseDeDatos::realizarConsulta(Consulta& consulta){
-    //COMPLETAR
+    if (consulta.tipo_consulta() == FROM){
+        //return FROMAux(Nombre_tabla(q), b);
+    } else if (consulta.tipo_consulta() == SELECT){
+        //return SELECTAux(Subconsulta1(q), Campo1(q), Valor(q), b);
+    } else if (consulta.tipo_consulta() == MATCH){
+        //return MATCHAux(Subconsulta1(q), Campo1(q), Campo2(q), b);
+    } else if (consulta.tipo_consulta() == PROJ){
+        //return PROJAux(Subconsulta1(q), Conj_campos(q), b);
+    } else if (consulta.tipo_consulta() == RENAME){
+        //return RENAMEAux(Subconsulta1(q), Campo1(q), Campo2(q), b);
+    } else if (consulta.tipo_consulta() == INTER){
+        //return INTERAux(Subconsulta1(q), Subconsulta2(q), b);
+    } else if (consulta.tipo_consulta() == UNION){
+        //return UNIONAux(Subconsulta1(q), Subconsulta2(q), b);
+    } else if (consulta.tipo_consulta() == PRODUCT){
+        //return PRODUCTAux(Subconsulta1(q), Subconsulta2(q), b);
+    }
 }
