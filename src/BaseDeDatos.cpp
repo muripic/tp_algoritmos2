@@ -1,11 +1,12 @@
 #include "BaseDeDatos.h"
 
-BaseDeDatos::BaseDeDatos(){
-    //COMPLETAR
+BaseDeDatos::BaseDeDatos() : _tablas(){
 }
 
 void BaseDeDatos::agregarTabla(NombreTabla& tabla, NombreCampo& clave, linear_set<NombreCampo>& campos){
-    //COMPLETAR
+    Tabla nueva(campos, clave);
+    pair<string, Tabla> entrada = make_pair(tabla, nueva);
+    _tablas.insert(entrada);
 }
 
 void BaseDeDatos::agregarRegistro(Registro& registro, NombreTabla& tabla){

@@ -45,7 +45,7 @@ public:
     bool empty() const;
 
     // CLAVES: Devuelve el conjunto de claves definidas en el diccionario
-    const linear_set<string>& claves();
+    const linear_set<string>& claves() const;
 
     // operator[]: Acceso o definición de pares clave/valor
     T &operator[](const string &clave);

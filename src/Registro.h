@@ -12,8 +12,9 @@ class Registro {
 public:
     Registro();
     void definir(const NombreCampo& campo, const Valor& valor);
-    const linear_set<NombreCampo>& campos();
+    const linear_set<NombreCampo>& campos() const;
     const Valor& operator[](const NombreCampo& campo) const;
+    bool operator==(const Registro& registro) const;
 
 private:
     string_map<Valor> _registro;

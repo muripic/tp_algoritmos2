@@ -23,7 +23,7 @@ public:
     linear_set<Registro> realizarConsulta(Consulta& consulta);
 
 private:
-    //ESTRUCTURA
+    string_map<Tabla> _tablas;
 
     //AUXILIARES
 
