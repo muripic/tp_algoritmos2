@@ -16,7 +16,7 @@ void Tabla::insertar(Registro &registro){
     //COMPLETAR
 }
 
-void Tabla::borrar(Valor &valor){
+void Tabla::borrar(const Valor &valor){
     linear_set<Registro>::iterator itReg = _diccValorClave.at(valor);
     linear_set<NombreCampo>::const_iterator itCampos = campos().begin();
     while (itCampos != campos().end()){

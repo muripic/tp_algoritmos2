@@ -15,7 +15,7 @@ class Tabla {
 public:
     Tabla(linear_set<NombreCampo>& campos, const NombreCampo& clave);
     void insertar(Registro &registro);
-    void borrar(Valor &valor);
+    void borrar(const Valor &valor);
     const linear_set<NombreCampo>& campos();
     const NombreCampo& clave();
     const linear_set<Registro>& registros();
