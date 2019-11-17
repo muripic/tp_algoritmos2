@@ -6,41 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/muripic/Documents/tp3-algo-ii-posta/src/BaseDeDatos.cpp
-BaseDeDatos.h
-/home/muripic/Documents/tp3-algo-ii-posta/src/BaseDeDatos.h
-
-/home/muripic/Documents/tp3-algo-ii-posta/src/BaseDeDatos.h
+/home/muripic/Documents/tp3-algo-ii-posta/src/Registro.h
 string
 -
 Tipos.h
 /home/muripic/Documents/tp3-algo-ii-posta/src/Tipos.h
-Registro.h
-/home/muripic/Documents/tp3-algo-ii-posta/src/Registro.h
+modulos_basicos/string_map.h
+/home/muripic/Documents/tp3-algo-ii-posta/src/modulos_basicos/string_map.h
+
+/home/muripic/Documents/tp3-algo-ii-posta/src/Tabla.cpp
 Tabla.h
 /home/muripic/Documents/tp3-algo-ii-posta/src/Tabla.h
-Consulta.h
-/home/muripic/Documents/tp3-algo-ii-posta/src/Consulta.h
-modulos_basicos/string_map.h
-/home/muripic/Documents/tp3-algo-ii-posta/src/modulos_basicos/string_map.h
-modulos_basicos/linear_set.h
-/home/muripic/Documents/tp3-algo-ii-posta/src/modulos_basicos/linear_set.h
-
-/home/muripic/Documents/tp3-algo-ii-posta/src/Consulta.h
-iostream
--
-set
--
-Tipos.h
-/home/muripic/Documents/tp3-algo-ii-posta/src/Tipos.h
-
-/home/muripic/Documents/tp3-algo-ii-posta/src/Registro.h
-string
--
-Tipos.h
-/home/muripic/Documents/tp3-algo-ii-posta/src/Tipos.h
-modulos_basicos/string_map.h
-/home/muripic/Documents/tp3-algo-ii-posta/src/modulos_basicos/string_map.h
 
 /home/muripic/Documents/tp3-algo-ii-posta/src/Tabla.h
 string
