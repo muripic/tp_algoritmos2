@@ -1,8 +1,8 @@
 #include "Tabla.h"
 
-Tabla::Tabla(linear_set<NombreCampo> &campos, const NombreCampo &clave) : _clave(clave), _registros(),
+Tabla::Tabla(const linear_set<NombreCampo> &campos, const NombreCampo &clave) : _clave(clave), _registros(),
                                                                           _diccValorClave(), _diccColumnas() {
-    linear_set<NombreCampo>::iterator it = campos.begin();
+    linear_set<NombreCampo>::const_iterator it = campos.begin();
     while (it != campos.end()) {
         linear_map<linear_set<Registro>::iterator, Valor> nuevo;
         pair<NombreCampo, linear_map<linear_set<Registro>::iterator, Valor>> entrada = make_pair(*it, nuevo);
@@ -55,7 +55,7 @@ const NombreCampo &Tabla::clave() {
     return _clave;
 }
 
-const linear_set<Registro> &Tabla::registros() {
+const linear_set<Registro> &Tabla::registros() const {
     return _registros;
 }
 

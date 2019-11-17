@@ -12,12 +12,12 @@ using namespace std;
 
 class Tabla {
 public:
-    Tabla(linear_set<NombreCampo>& campos, const NombreCampo& clave);
+    Tabla(const linear_set<NombreCampo>& campos, const NombreCampo& clave);
     void insertar(Registro &registro);
     void borrar(const Valor &valor);
     const linear_set<NombreCampo>& campos();
     const NombreCampo& clave();
-    const linear_set<Registro>& registros();
+    const linear_set<Registro>& registros() const;
     bool existeRegConClave(const Valor& valor);
     const Registro& regPorClave(const Valor& valor);
     const linear_set<Valor>& valoresClave();
