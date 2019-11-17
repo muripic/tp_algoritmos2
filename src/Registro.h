@@ -13,7 +13,8 @@ public:
     Registro();
     void definir(const NombreCampo& campo, const Valor& valor);
     const linear_set<NombreCampo>& campos() const;
-    const Valor& operator[](const NombreCampo& campo) const;
+    Valor operator[](const NombreCampo& campo) const; /*Originalmente estaba como const Valor&, pero tuvimos que cambiarla
+    porque provocaba un error en el módulo driver, ya que en la función leerDataset se modifica */
     bool operator==(const Registro& registro) const;
 
 private:

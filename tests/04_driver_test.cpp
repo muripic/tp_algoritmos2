@@ -1,7 +1,7 @@
 #include "gtest-1.8.1/gtest.h"
 #include "../src/Driver.h"
 
-/*set<string> proj1(const Respuesta& r, NombreCampo c) {
+set<string> proj1(const Respuesta& r, NombreCampo c) {
     set<string> s;
     for (Registro reg : r) {
         s.insert(reg[c]);
@@ -393,4 +393,4 @@ TEST(test_bd, test_inter_tablas_distintas) {
               proj4(r2, "mes", "linea", "estacion", "cantidad"));
     ASSERT_EQ(proj4(r1, "mes", "linea", "estacion", "cantidad"),
               proj4(r3, "mes", "linea", "estacion", "cantidad"));
-}*/
+}

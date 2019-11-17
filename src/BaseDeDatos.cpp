@@ -102,7 +102,24 @@ linear_set<Registro>
 BaseDeDatos::selectProdAux(const Consulta &q, const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c,
                            const Valor &v) {
     linear_set<Registro> res;
-    //COMPLETAR
+    Registro r1 = *(selectAux(q, c, v).begin());
+    linear_set<Registro>::const_iterator it = _tablas.at(t2).registros().begin();
+    while (it != _tablas.at(t2).registros().end()){
+        Registro r2 = *it;
+        Registro rNuevo;
+        linear_set<Registro>::iterator itNuevo = res.fast_insert(rNuevo);
+        linear_set<NombreCampo>::const_iterator itCamp1 = r1.campos().begin();
+        while (itCamp1 != r1.campos().end()){
+            rNuevo.definir(*itCamp1, r1[*itCamp1]);
+            ++itCamp1;
+        }
+        linear_set<NombreCampo>::const_iterator itCamp2 = r2.campos().begin();
+        while (itCamp1 != r2.campos().end()){
+            rNuevo.definir(*itCamp2, r2[*itCamp2]);
+            ++itCamp2;
+        }
+        ++it;
+    }
     return res;
 }
 
