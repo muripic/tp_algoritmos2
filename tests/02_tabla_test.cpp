@@ -103,15 +103,40 @@ TEST(test_tabla, borrar) {
     ASSERT_EQ(personajes.registros().size(), 1);
 }
 
+TEST(test_tabla, otras_funciones) {
+    linear_set<NombreCampo> campos;
+    campos.fast_insert("Nombre");
+    campos.fast_insert("Apellido");
+    campos.fast_insert("Programa");
+    campos.fast_insert("CharID");
 
-/* PARA TENER COMO REFERENCIA LAS FUNCIONES QUE HAY QUE TESTEAR
-Tabla(linear_set<NombreCampo>& campos, NombreCampo& clave);
-void insertar(Registro &registro);
-void borrar(Valor &valor);
-const linear_set<NombreCampo>& campos();
-const NombreCampo& clave();
-const linear_set<Registro>& registros();
-bool existeRegConClave(Valor &valor);
-const Registro& regPorClave(Valor &valor);
-const linear_set<Valor>& valoresClave();
-linear_map<linear_set<Registro>::iterator, Valor>& obtenerColumna(NombreCampo &campo) const;*/
+    Tabla personajes(campos, "CharID");
+    Registro char0001;
+    char0001.definir("Nombre", "Homer");
+    char0001.definir("Apellido", "Simpson");
+    char0001.definir("Programa", "The Simpsons");
+    char0001.definir("CharID", "0001");
+    Registro char0002;
+    char0002.definir("Nombre", "Randy");
+    char0002.definir("Apellido", "Marsh");
+    char0002.definir("Programa", "South Park");
+    char0002.definir("CharID", "0002");
+    Registro char0003;
+    char0003.definir("Nombre", "Peter");
+    char0003.definir("Apellido", "Griffin");
+    char0003.definir("Programa", "Family Guy");
+    char0003.definir("CharID", "0003");
+
+    personajes.insertar(char0001);
+    personajes.insertar(char0002);
+    personajes.insertar(char0003);
+
+    ASSERT_EQ(personajes.registros().size(), 3);
+    ASSERT_TRUE(personajes.existeRegConClave("0003"));
+    ASSERT_EQ(personajes.regPorClave("0003")["Nombre"], "Peter");
+
+    ASSERT_EQ(personajes.valoresClave().size(), 3);
+    ASSERT_EQ(personajes.valoresClave().count("0002"), 1);
+
+    ASSERT_EQ(personajes.obtenerColumna("Apellido").size(), 3);
+}
