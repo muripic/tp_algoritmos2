@@ -15,13 +15,13 @@ public:
     Tabla(const linear_set<NombreCampo>& campos, const NombreCampo& clave);
     void insertar(Registro &registro);
     void borrar(const Valor &valor);
-    const linear_set<NombreCampo>& campos();
-    const NombreCampo& clave();
+    const linear_set<NombreCampo>& campos() const;
+    const NombreCampo& clave() const;
     const linear_set<Registro>& registros() const;
-    bool existeRegConClave(const Valor& valor);
-    const Registro& regPorClave(const Valor& valor);
-    const linear_set<Valor>& valoresClave();
-    const linear_map<linear_set<Registro>::iterator, Valor>& obtenerColumna(const NombreCampo& campo);
+    bool existeRegConClave(const Valor& valor) const;
+    const Registro& regPorClave(const Valor& valor) const;
+    const linear_set<Valor>& valoresClave() const;
+    const linear_map<linear_set<Registro>::iterator, Valor>& obtenerColumna(const NombreCampo& campo) const;
 
 private:
     NombreCampo _clave;

@@ -20,7 +20,7 @@ public:
     const string_map<Tabla> &tablas() const;
     void eliminarTabla(const NombreTabla &tabla);
     void eliminarRegistro(const Valor &valor, const NombreTabla &tabla);
-    linear_set<Registro> realizarConsulta(Consulta &consulta);
+    linear_set<Registro> realizarConsulta(const Consulta &consulta);
 
 private:
     string_map<Tabla> _tablas;

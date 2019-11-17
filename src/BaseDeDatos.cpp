@@ -1,107 +1,149 @@
 #include "BaseDeDatos.h"
 
-BaseDeDatos::BaseDeDatos() : _tablas(){
+BaseDeDatos::BaseDeDatos() : _tablas() {
 }
 
-void BaseDeDatos::agregarTabla(const NombreTabla& tabla, const NombreCampo& clave, const linear_set<NombreCampo>& campos){
+void
+BaseDeDatos::agregarTabla(const NombreTabla &tabla, const NombreCampo &clave, const linear_set<NombreCampo> &campos) {
     Tabla nueva(campos, clave);
     pair<string, Tabla> entrada = make_pair(tabla, nueva);
     _tablas.insert(entrada);
 }
 
-void BaseDeDatos::agregarRegistro(Registro& registro, const NombreTabla& tabla){
+void BaseDeDatos::agregarRegistro(Registro &registro, const NombreTabla &tabla) {
     _tablas.at(tabla).insertar(registro);
 }
 
-const string_map<Tabla>& BaseDeDatos::tablas() const{
+const string_map<Tabla> &BaseDeDatos::tablas() const {
     return _tablas;
 }
 
-void BaseDeDatos::eliminarTabla(const NombreTabla& tabla){
+void BaseDeDatos::eliminarTabla(const NombreTabla &tabla) {
     _tablas.erase(tabla);
 }
 
-void BaseDeDatos::eliminarRegistro(const Valor &valor, const NombreTabla& tabla){
+void BaseDeDatos::eliminarRegistro(const Valor &valor, const NombreTabla &tabla) {
     _tablas.at(tabla).borrar(valor);
 }
 
-linear_set<Registro> BaseDeDatos::realizarConsulta(Consulta& consulta){
-    if (consulta.tipo_consulta() == FROM){
+linear_set<Registro> BaseDeDatos::realizarConsulta(const Consulta &consulta) {
+    if (consulta.tipo_consulta() == FROM) {
         return fromAux(consulta.nombre_tabla());
-    } else if (consulta.tipo_consulta() == SELECT){
+    } else if (consulta.tipo_consulta() == SELECT) {
         return selectAux(consulta.subconsulta1(), consulta.campo1(), consulta.valor());
-    } else if (consulta.tipo_consulta() == MATCH){
+    } else if (consulta.tipo_consulta() == MATCH) {
         return matchAux(consulta.subconsulta1(), consulta.campo1(), consulta.campo2());
-    } else if (consulta.tipo_consulta() == PROJ){
+    } else if (consulta.tipo_consulta() == PROJ) {
         return projAux(consulta.subconsulta1(), consulta.conj_campos());
-    } else if (consulta.tipo_consulta() == RENAME){
+    } else if (consulta.tipo_consulta() == RENAME) {
         return renameAux(consulta.subconsulta1(), consulta.campo1(), consulta.campo2());
-    } else if (consulta.tipo_consulta() == INTER){
+    } else if (consulta.tipo_consulta() == INTER) {
         return interAux(consulta.subconsulta1(), consulta.subconsulta2());
-    } else if (consulta.tipo_consulta() == UNION){
+    } else if (consulta.tipo_consulta() == UNION) {
         return unionAux(consulta.subconsulta1(), consulta.subconsulta2());
     } else { //consulta.tipo_consulta() == PRODUCT
         return productAux(consulta.subconsulta1(), consulta.subconsulta2());
     }
 }
 
-linear_set<Registro> BaseDeDatos::fromAux(const NombreTabla& t){
+linear_set<Registro> BaseDeDatos::fromAux(const NombreTabla &t) {
     linear_set<Registro> res;
-    if (_tablas.count(t) == 1){
+    if (_tablas.count(t) == 1) {
         res = _tablas.at(t).registros();
     }
     return res;
 }
 
-linear_set<Registro> BaseDeDatos::selectAux(const Consulta& q, const NombreCampo& c, const Valor& v){
+linear_set<Registro> BaseDeDatos::selectAux(const Consulta &q, const NombreCampo &c, const Valor &v) {
+    linear_set<Registro> res;
+    if (q.tipo_consulta() == FROM and _tablas.count(q.nombre_tabla())) {
+        Tabla *t = &(_tablas.at(q.nombre_tabla()));  //Optimización 1: Select con clave
+        if (c == t->clave()) {
+            res.fast_insert(t->regPorClave(v));
+        } else if (t->campos().count(c) == 1) {  //Optimización 2: Select sin clave
+            auto itCol = t->obtenerColumna(c).begin();
+            while (itCol != t->obtenerColumna(c).end()) {
+                if (itCol->second == v) {
+                    auto itR = itCol->first;
+                    res.fast_insert(*itR);
+                }
+                ++itCol;
+            }
+        }
+    } else if (q.tipo_consulta() == SELECT and q.subconsulta1().tipo_consulta() == FROM and
+               _tablas.count(q.subconsulta1().nombre_tabla())) {
+        Tabla *t = &(_tablas.at(q.subconsulta1().nombre_tabla()));
+        if (c == t->clave()) {    //Optimización 4: Select con clave de select sin clave
+            if (t->campos().count(q.campo1()) == 1 and t->regPorClave(v)[q.campo1()] == q.valor()) {
+                res.fast_insert(t->regPorClave(v));
+            }
+        }
+    } else if (q.tipo_consulta() == PRODUCT and q.subconsulta1().tipo_consulta() == FROM and
+               q.subconsulta2().tipo_consulta() == FROM) { //Optimización 5: Select de clave de un producto
+        NombreTabla nt1 = q.subconsulta1().nombre_tabla();
+        NombreTabla nt2 = q.subconsulta2().nombre_tabla();
+        if (nt1 != nt2 and _tablas.at(nt1).clave() == c){
+            res = selectProdAux(q.subconsulta1().subconsulta1(), nt1, nt2, c, v);
+        }
+    } else { //Caso general
+        linear_set<Registro> rs = realizarConsulta(q);
+        linear_set<Registro>::iterator itR = rs.begin();
+        while (itR != rs.end()){
+            if (itR->campos().count(c) == 1 and (*itR)[c] == v){
+                res.fast_insert(*itR);
+            }
+            ++itR;
+        }
+    }
+    return res;
+}
+
+linear_set<Registro>
+BaseDeDatos::selectProdAux(const Consulta &q, const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c,
+                           const Valor &v) {
     linear_set<Registro> res;
     //COMPLETAR
     return res;
 }
 
-linear_set<Registro> BaseDeDatos::selectProdAux(const Consulta& q, const NombreTabla& t1, const NombreTabla& t2, const NombreCampo& c, const Valor& v){
+linear_set<Registro> BaseDeDatos::matchAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2) {
     linear_set<Registro> res;
     //COMPLETAR
     return res;
 }
 
-linear_set<Registro> BaseDeDatos::matchAux(const Consulta& q, const NombreCampo& c1, const NombreCampo& c2){
+linear_set<Registro>
+BaseDeDatos::joinAux(const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c1, const NombreCampo &c2) {
     linear_set<Registro> res;
     //COMPLETAR
     return res;
 }
 
-linear_set<Registro> BaseDeDatos::joinAux(const NombreTabla& t1, const NombreTabla& t2, const NombreCampo& c1, const NombreCampo& c2){
+linear_set<Registro> BaseDeDatos::projAux(const Consulta &q, const set<NombreCampo> &cs) {
     linear_set<Registro> res;
     //COMPLETAR
     return res;
 }
 
-linear_set<Registro> BaseDeDatos::projAux(const Consulta& q, const set<NombreCampo>& cs){
+linear_set<Registro> BaseDeDatos::renameAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2) {
     linear_set<Registro> res;
     //COMPLETAR
     return res;
 }
 
-linear_set<Registro> BaseDeDatos::renameAux(const Consulta& q, const NombreCampo& c1, const NombreCampo& c2){
+linear_set<Registro> BaseDeDatos::interAux(const Consulta &q1, const Consulta &q2) {
     linear_set<Registro> res;
     //COMPLETAR
     return res;
 }
 
-linear_set<Registro> BaseDeDatos::interAux(const Consulta& q1, const Consulta& q2){
+linear_set<Registro> BaseDeDatos::unionAux(const Consulta &q1, const Consulta &q2) {
     linear_set<Registro> res;
     //COMPLETAR
     return res;
 }
 
-linear_set<Registro> BaseDeDatos::unionAux(const Consulta& q1, const Consulta& q2){
-    linear_set<Registro> res;
-    //COMPLETAR
-    return res;
-}
-
-linear_set<Registro> BaseDeDatos::productAux(const Consulta& q1, const Consulta& q2){
+linear_set<Registro> BaseDeDatos::productAux(const Consulta &q1, const Consulta &q2) {
     linear_set<Registro> res;
     //COMPLETAR
     return res;

@@ -47,11 +47,11 @@ void Tabla::borrar(const Valor &valor) {
  * Igual, cambia la complejidad de la operación pero no del algoritmo*/
 }
 
-const linear_set<NombreCampo> &Tabla::campos() {
+const linear_set<NombreCampo> &Tabla::campos() const {
     return _diccColumnas.claves();
 }
 
-const NombreCampo &Tabla::clave() {
+const NombreCampo &Tabla::clave() const {
     return _clave;
 }
 
@@ -59,19 +59,19 @@ const linear_set<Registro> &Tabla::registros() const {
     return _registros;
 }
 
-bool Tabla::existeRegConClave(const Valor &valor) {
+bool Tabla::existeRegConClave(const Valor &valor) const {
     return _diccValorClave.count(valor) == 1;
 
 }
 
-const Registro &Tabla::regPorClave(const Valor &valor) {
+const Registro &Tabla::regPorClave(const Valor &valor) const {
     return *_diccValorClave.at(valor);
 }
 
-const linear_set<Valor> &Tabla::valoresClave() {
+const linear_set<Valor> &Tabla::valoresClave() const {
     return _diccValorClave.claves();
 }
 
-const linear_map<linear_set<Registro>::iterator, Valor> &Tabla::obtenerColumna(const NombreCampo &campo) {
+const linear_map<linear_set<Registro>::iterator, Valor> &Tabla::obtenerColumna(const NombreCampo &campo) const {
     return _diccColumnas.at(campo);
 }
