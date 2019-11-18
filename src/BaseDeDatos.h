@@ -12,6 +12,8 @@
 
 using namespace std;
 
+typedef vector<Registro> Respuesta;
+
 class BaseDeDatos {
 public:
     BaseDeDatos();
@@ -20,23 +22,23 @@ public:
     const string_map<Tabla> &tablas() const;
     void eliminarTabla(const NombreTabla &tabla);
     void eliminarRegistro(const Valor &valor, const NombreTabla &tabla);
-    vector<Registro> realizarConsulta(const Consulta &consulta);
+    Respuesta realizarConsulta(const Consulta &consulta);
 
 private:
     string_map<Tabla> _tablas;
 
     //FUNCIONES AUXILIARES
 
-    vector<Registro> fromAux(const NombreTabla &t);
-    vector<Registro> selectAux(const Consulta &q, const NombreCampo &c, const Valor &v);
-    vector<Registro> selectProdAux(const Consulta &q, const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c, const Valor &v);
-    vector<Registro> matchAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2);
-    vector<Registro> joinAux(const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c1, const NombreCampo &c2);
-    vector<Registro> renameAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2);
-    vector<Registro> projAux(const Consulta &q, const set<NombreCampo> &cs);
-    vector<Registro> interAux(const Consulta &q1, const Consulta &q2);
-    vector<Registro> unionAux(const Consulta &q1, const Consulta &q2);
-    vector<Registro> productAux(const Consulta &q1, const Consulta &q2);
+    Respuesta fromAux(const NombreTabla &t);
+    Respuesta selectAux(const Consulta &q, const NombreCampo &c, const Valor &v);
+    Respuesta selectProdAux(const Consulta &q, const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c, const Valor &v);
+    Respuesta matchAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2);
+    Respuesta joinAux(const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c1, const NombreCampo &c2);
+    Respuesta renameAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2);
+    Respuesta projAux(const Consulta &q, const set<NombreCampo> &cs);
+    Respuesta interAux(const Consulta &q1, const Consulta &q2);
+    Respuesta unionAux(const Consulta &q1, const Consulta &q2);
+    Respuesta productAux(const Consulta &q1, const Consulta &q2);
 
 };
 

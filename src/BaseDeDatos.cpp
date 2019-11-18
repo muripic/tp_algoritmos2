@@ -26,7 +26,7 @@ void BaseDeDatos::eliminarRegistro(const Valor &valor, const NombreTabla &tabla)
     _tablas.at(tabla).borrar(valor);
 }
 
-vector<Registro> BaseDeDatos::realizarConsulta(const Consulta &consulta) {
+Respuesta BaseDeDatos::realizarConsulta(const Consulta &consulta) {
     if (consulta.tipo_consulta() == FROM) {
         return fromAux(consulta.nombre_tabla());
     } else if (consulta.tipo_consulta() == SELECT) {
@@ -46,8 +46,8 @@ vector<Registro> BaseDeDatos::realizarConsulta(const Consulta &consulta) {
     }
 }
 
-vector<Registro> BaseDeDatos::fromAux(const NombreTabla &t) {
-    vector<Registro> res;
+Respuesta BaseDeDatos::fromAux(const NombreTabla &t) {
+    Respuesta res;
     if (_tablas.count(t) == 1) {
         for (const Registro &r : _tablas.at(t).registros())
             res.push_back(r);
@@ -55,8 +55,8 @@ vector<Registro> BaseDeDatos::fromAux(const NombreTabla &t) {
     return res;
 }
 
-vector<Registro> BaseDeDatos::selectAux(const Consulta &q, const NombreCampo &c, const Valor &v) {
-    vector<Registro> res;
+Respuesta BaseDeDatos::selectAux(const Consulta &q, const NombreCampo &c, const Valor &v) {
+    Respuesta res;
     if (q.tipo_consulta() == FROM and _tablas.count(q.nombre_tabla())) {
         //Optimización 1: Select con clave
         Tabla *t = &(_tablas.at(q.nombre_tabla()));
@@ -91,7 +91,7 @@ vector<Registro> BaseDeDatos::selectAux(const Consulta &q, const NombreCampo &c,
         }
     } else {
         //Caso general
-        vector<Registro> rs = realizarConsulta(q);
+        Respuesta rs = realizarConsulta(q);
         auto itR = rs.begin();
         while (itR != rs.end()) {
             if (itR->campos().count(c) == 1 and (*itR)[c] == v) {
@@ -103,10 +103,10 @@ vector<Registro> BaseDeDatos::selectAux(const Consulta &q, const NombreCampo &c,
     return res;
 }
 
-vector<Registro>
+Respuesta
 BaseDeDatos::selectProdAux(const Consulta &q, const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c,
                            const Valor &v) {
-    vector<Registro> res;
+    Respuesta res;
     Registro r1 = *(selectAux(q, c, v).begin());
     linear_set<Registro>::const_iterator it = _tablas.at(t2).registros().begin();
     while (it != _tablas.at(t2).registros().end()) {
@@ -128,45 +128,45 @@ BaseDeDatos::selectProdAux(const Consulta &q, const NombreTabla &t1, const Nombr
     return res;
 }
 
-vector<Registro> BaseDeDatos::matchAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2) {
-    vector<Registro> res;
+Respuesta BaseDeDatos::matchAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2) {
+    Respuesta res;
     //COMPLETAR
     return res;
 }
 
-vector<Registro>
+Respuesta
 BaseDeDatos::joinAux(const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c1, const NombreCampo &c2) {
-    vector<Registro> res;
+    Respuesta res;
     //COMPLETAR
     return res;
 }
 
-vector<Registro> BaseDeDatos::projAux(const Consulta &q, const set<NombreCampo> &cs) {
-    vector<Registro> res;
+Respuesta BaseDeDatos::projAux(const Consulta &q, const set<NombreCampo> &cs) {
+    Respuesta res;
     //COMPLETAR
     return res;
 }
 
-vector<Registro> BaseDeDatos::renameAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2) {
-    vector<Registro> res;
+Respuesta BaseDeDatos::renameAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2) {
+    Respuesta res;
     //COMPLETAR
     return res;
 }
 
-vector<Registro> BaseDeDatos::interAux(const Consulta &q1, const Consulta &q2) {
-    vector<Registro> res;
+Respuesta BaseDeDatos::interAux(const Consulta &q1, const Consulta &q2) {
+    Respuesta res;
     //COMPLETAR
     return res;
 }
 
-vector<Registro> BaseDeDatos::unionAux(const Consulta &q1, const Consulta &q2) {
-    vector<Registro> res;
+Respuesta BaseDeDatos::unionAux(const Consulta &q1, const Consulta &q2) {
+    Respuesta res;
     //COMPLETAR
     return res;
 }
 
-vector<Registro> BaseDeDatos::productAux(const Consulta &q1, const Consulta &q2) {
-    vector<Registro> res;
+Respuesta BaseDeDatos::productAux(const Consulta &q1, const Consulta &q2) {
+    Respuesta res;
     //COMPLETAR
     return res;
 }
