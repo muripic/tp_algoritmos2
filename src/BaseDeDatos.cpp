@@ -189,7 +189,25 @@ BaseDeDatos::joinAux(const NombreTabla &t1, const NombreTabla &t2, const NombreC
 
 Respuesta BaseDeDatos::projAux(const Consulta &q, const set<NombreCampo> &cs) {
     Respuesta res;
-    //COMPLETAR
+    Respuesta rs = realizarConsulta(q);
+    Respuesta::const_iterator itReg = rs.begin();
+    while(itReg != rs.end()){
+        Registro r = *itReg;
+        Registro rNuevo;
+        linear_set<NombreCampo>::const_iterator itCampos = r.Campos().begin();
+        while(itCampos != r.Campos().end()){
+            NombreCampo c = *itCampos;
+            if (cs.count(c) >= 1){
+                rNuevo.definir(c, r[c]);
+            }
+            res.push_back(rNuevo);
+            ++itCampos;
+        }
+        if (!rNuevo.Campos().empty()){
+            res.push_back(rNuevo);
+        }
+        ++itReg;
+    }
     return res;
 }
 
