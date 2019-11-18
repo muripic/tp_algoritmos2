@@ -281,6 +281,31 @@ Respuesta BaseDeDatos::unionAux(const Consulta &q1, const Consulta &q2) {
 
 Respuesta BaseDeDatos::productAux(const Consulta &q1, const Consulta &q2) {
     Respuesta res;
-    //COMPLETAR
+    Respuesta rs1 = realizarConsulta(q1);
+    Respuesta rs2 = realizarConsulta(q2);
+    Respuesta::iterator it1 = rs1.begin();
+    while(it1 != rs1.end()){
+        Respuesta::iterator it2 = rs2.begin();
+        while (it2 != rs2.end()){
+            Registro rNuevo;
+            Registro r1 = *it1;
+            Registro r2 = *it2;
+            linear_set<NombreCampo>::iterator itCamp1 = r1.Campos().begin();
+            while(itCamp1 != r1.Campos().end()){
+                NombreCampo c = *itCamp1;
+                rNuevo.definir(c, r1[c]);
+                ++itCamp1;
+            }
+            linear_set<nombreCampo>::iterator itCamp2 = r2.Campos().begin();
+            while(itCamp2 != r2.Campos().end()){
+                NombreCampo c = *itCamp2;
+                rNuevo.definir(c, r2[c]);
+                ++itCamp2;
+            }
+            res.push_back(rNuevo);
+            ++it2;
+        }
+        ++it1;    
+    }
     return res;
 }
