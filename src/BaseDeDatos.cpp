@@ -149,10 +149,38 @@ Respuesta BaseDeDatos::matchAux(const Consulta &q, const NombreCampo &c1, const 
     return res;
 }
 
-Respuesta
+
 BaseDeDatos::joinAux(const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c1, const NombreCampo &c2) {
     Respuesta res;
-    //COMPLETAR
+    if (size.registros._tablas.at(t1) <= size.registros._tablas.at(t2)){
+        tabla tabMen = _tablas.at(t1);
+        tabla tabMay = _tablas.at(t2);
+    } else{
+        tabla tabMay = _tablas.at(t1);
+        tabla tabMen = _tablas.at(t2);
+    }
+    linear_set<Valor>::const_iterator itClave = tabMen.valoresClave().begin();
+    while (itClave != tabMen.valoresClave().end()){
+        Valor v = *itClave;
+        if tabMay.existeRegConClave(v){
+            Registro rNuevo;
+            Registro r1 = tabMen.RegPorClave(v);
+            Registro r2 = tabMay.RegPorClave(v);
+            linear_set<NombreCampo>::const_iterator itCamp1 = r1.campos().begin();
+            while(itCamp1 != r1.campos.end()){
+                nombreCampo c = *itCamp1;
+                res.push_back(rNuevo.definir(c, r1[c]));
+                ++itCamp1;
+            }
+            linear_set<NombreCampo>::const_iterator itCamp2 = r2.campos().begin();
+            while(itCamp2 != r2.campos.end()){
+                nombreCampo c = *itCamp2;
+                res.push_back(rNuevo.definir(c, r2[c])); //era esta la idea?
+                ++itCamp2;
+            }
+        }
+        ++itClave;
+    }
     return res;
 }
 
@@ -170,15 +198,39 @@ Respuesta BaseDeDatos::renameAux(const Consulta &q, const NombreCampo &c1, const
 
 Respuesta BaseDeDatos::interAux(const Consulta &q1, const Consulta &q2) {
     Respuesta res;
-    //COMPLETAR
+    Respuesta rs1 = realizarConsulta(q1);
+    Respuesta rs2 = realizarConsulta(q2);
+    Respuesta::const_iterator itRs = rs1.begin();
+    while (itRs != rs1.end()){
+        Registro r = *itR;
+        Registro r2 = std::find(rs2.begin(), rs2.end(), r);
+        if (r2 != rs2.end() && *r2 == r){
+            res.push_back(r);
+        } else if (r2 == rs2.end() && r == *r2){
+            res.push_back(r);
+        }    
+        ++itRs;
+    }
     return res;
 }
 
 Respuesta BaseDeDatos::unionAux(const Consulta &q1, const Consulta &q2) {
     Respuesta res;
-    //COMPLETAR
+    Respuesta rs1 = realizarConsulta(q1);
+    Respuesta rs2 = realizarConsulta(q2);
+    Respuesta::const_iterator it1 = rs1.begin();
+    while (it1 != rs1.end()){
+        res.push_back(*it1);
+        ++it1;
+    }
+    Respuesta::const_iterator it2 = rs2.begin();
+    while (it2 != rs2.end()){
+        res.push_back(*it2);
+        ++it2;
+    }
     return res;
 }
+
 
 Respuesta BaseDeDatos::productAux(const Consulta &q1, const Consulta &q2) {
     Respuesta res;
