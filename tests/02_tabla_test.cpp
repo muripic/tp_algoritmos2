@@ -129,3 +129,23 @@ TEST(test_tabla, insertar) {
 
     ASSERT_EQ(personajes.obtenerColumna("Apellido").size(), 3);
 }
+
+TEST(test_tabla, stress) {
+
+    linear_set<NombreCampo> cs;
+    cs.insert("id");
+    cs.insert("fecha");
+    cs.insert("provincia_origen");
+    cs.insert("localidad_origen");
+    cs.insert("provincia_destino");
+    cs.insert("localidad_destino");
+    cs.insert("cant_lineas");
+    cs.insert("cant_pasajeros");
+    cs.insert("cant_servicios");
+
+    Tabla interurbanos(cs, "id");
+
+    interurbanos.cargarRegistros("interurbano");
+
+    ASSERT_EQ(interurbanos.registros().size(), 16190);
+}

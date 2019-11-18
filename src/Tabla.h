@@ -2,6 +2,8 @@
 #define TP3_TABLA_H
 
 #include <string>
+#include <fstream>
+#include <sstream>
 
 #include "Tipos.h"
 #include "Registro.h"
@@ -23,11 +25,16 @@ public:
     const linear_set<Valor>& valoresClave() const;
     const linear_map<linear_set<Registro>::iterator, Valor>& obtenerColumna(const NombreCampo& campo) const;
 
+    void cargarRegistros(string dataset);
+
 private:
     NombreCampo _clave;
     linear_set<Registro> _registros;
     string_map<linear_set<Registro>::iterator> _diccValorClave;
     string_map<linear_map<linear_set<Registro>::iterator, Valor>> _diccColumnas;
+
+    bool _leerLinea(ifstream& is, vector<string>& valores) const;
+
 };
 
 
