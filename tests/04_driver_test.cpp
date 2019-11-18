@@ -67,6 +67,7 @@ TEST(test_bd, test_select_avanzado) {
     Respuesta r4 = d.consultar(Consulta(
         "from(select_linea_roca_temperley)"
         ));
+
     ASSERT_EQ(r3.size(), (size_t)5);
     ASSERT_EQ(proj4(r3, "mes", "linea", "estacion", "cantidad"), 
               proj4(r4, "mes", "linea", "estacion", "cantidad"));

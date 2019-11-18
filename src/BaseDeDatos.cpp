@@ -49,7 +49,7 @@ vector<Registro> BaseDeDatos::realizarConsulta(const Consulta &consulta) {
 vector<Registro> BaseDeDatos::fromAux(const NombreTabla &t) {
     vector<Registro> res;
     if (_tablas.count(t) == 1) {
-        for (const Registro& r : _tablas.at(t).registros())
+        for (const Registro &r : _tablas.at(t).registros())
             res.push_back(r);
     }
     return res;
@@ -58,10 +58,12 @@ vector<Registro> BaseDeDatos::fromAux(const NombreTabla &t) {
 vector<Registro> BaseDeDatos::selectAux(const Consulta &q, const NombreCampo &c, const Valor &v) {
     vector<Registro> res;
     if (q.tipo_consulta() == FROM and _tablas.count(q.nombre_tabla())) {
-        Tabla *t = &(_tablas.at(q.nombre_tabla()));  //Optimización 1: Select con clave
+        //Optimización 1: Select con clave
+        Tabla *t = &(_tablas.at(q.nombre_tabla()));
         if (c == t->clave()) {
             res.push_back(t->regPorClave(v));
-        } else if (t->campos().count(c) == 1) {  //Optimización 2: Select sin clave
+        } else if (t->campos().count(c) == 1) {
+            //Optimización 2: Select sin clave
             auto itCol = t->obtenerColumna(c).begin();
             while (itCol != t->obtenerColumna(c).end()) {
                 if (itCol->second == v) {
@@ -72,21 +74,23 @@ vector<Registro> BaseDeDatos::selectAux(const Consulta &q, const NombreCampo &c,
             }
         }
     } else if (q.tipo_consulta() == SELECT and q.subconsulta1().tipo_consulta() == FROM and
-               _tablas.count(q.subconsulta1().nombre_tabla())) {
+               _tablas.count(q.subconsulta1().nombre_tabla()) == 1 and
+               c == _tablas.at(q.subconsulta1().nombre_tabla()).clave()) {
+        //Optimización 4: Select con clave de select sin clave
         Tabla *t = &(_tablas.at(q.subconsulta1().nombre_tabla()));
-        if (c == t->clave()) {    //Optimización 4: Select con clave de select sin clave
-            if (t->campos().count(q.campo1()) == 1 and t->regPorClave(v)[q.campo1()] == q.valor()) {
-                res.push_back(t->regPorClave(v));
-            }
+        if (t->campos().count(q.campo1()) == 1 and t->regPorClave(v)[q.campo1()] == q.valor()) {
+            res.push_back(t->regPorClave(v));
         }
     } else if (q.tipo_consulta() == PRODUCT and q.subconsulta1().tipo_consulta() == FROM and
-               q.subconsulta2().tipo_consulta() == FROM) { //Optimización 5: Select de clave de un producto
+               q.subconsulta2().tipo_consulta() == FROM) {
+        //Optimización 5: Select de clave de un producto
         NombreTabla nt1 = q.subconsulta1().nombre_tabla();
         NombreTabla nt2 = q.subconsulta2().nombre_tabla();
         if (nt1 != nt2 and _tablas.at(nt1).clave() == c) {
             res = selectProdAux(q.subconsulta1().subconsulta1(), nt1, nt2, c, v);
         }
-    } else { //Caso general
+    } else {
+        //Caso general
         vector<Registro> rs = realizarConsulta(q);
         auto itR = rs.begin();
         while (itR != rs.end()) {
@@ -111,12 +115,12 @@ BaseDeDatos::selectProdAux(const Consulta &q, const NombreTabla &t1, const Nombr
         res.push_back(rNuevo);
         linear_set<NombreCampo>::const_iterator itCamp1 = r1.campos().begin();
         while (itCamp1 != r1.campos().end()) {
-            res[res.size()-1].definir(*itCamp1, r1[*itCamp1]);
+            res[res.size() - 1].definir(*itCamp1, r1[*itCamp1]);
             ++itCamp1;
         }
         linear_set<NombreCampo>::const_iterator itCamp2 = r2.campos().begin();
         while (itCamp1 != r2.campos().end()) {
-            res[res.size()-1].definir(*itCamp2, r2[*itCamp2]);
+            res[res.size() - 1].definir(*itCamp2, r2[*itCamp2]);
             ++itCamp2;
         }
         ++it;
