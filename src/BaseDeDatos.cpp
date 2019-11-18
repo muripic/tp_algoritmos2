@@ -129,8 +129,23 @@ BaseDeDatos::selectProdAux(const Consulta &q, const NombreTabla &t1, const Nombr
 }
 
 Respuesta BaseDeDatos::matchAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2) {
+    //Optimización 3: Join con claves
+    if (q.tipo_consulta() == PRODUCT and q.subconsulta1().tipo_consulta() == FROM and
+        q.subconsulta2().tipo_consulta() == FROM and
+        q.subconsulta1().nombre_tabla() != q.subconsulta2().nombre_tabla() and
+        _tablas.count(q.subconsulta1().nombre_tabla()) == 1 and
+        _tablas.count(q.subconsulta2().nombre_tabla()) == 1 and
+        _tablas.at(q.subconsulta1().nombre_tabla()).clave() == c1 and
+        _tablas.at(q.subconsulta2().nombre_tabla()).clave() == c2) {
+        return joinAux(q.subconsulta1().nombre_tabla(), q.subconsulta2().nombre_tabla(), c1, c2);
+    }
     Respuesta res;
-    //COMPLETAR
+    Respuesta rs = realizarConsulta(q);
+    for (Registro& r : rs) {
+        if (r.campos().count(c1) == 1 and r.campos().count(c2) == 1 and r[c1] == r[c2]) {
+            res.push_back(r);
+        }
+    }
     return res;
 }
 

@@ -131,7 +131,7 @@ TEST(test_bd, test_select_vacio) {
     ASSERT_EQ(r.size(), (size_t)0);
 }
 
-/*TEST(test_bd, test_match_basico) {
+TEST(test_bd, test_match_basico) {
     Driver d;
     d.leerDataset("personas");
     Respuesta r = d.consultar(Consulta(
@@ -177,7 +177,7 @@ TEST(test_bd, test_match_vacio) {
     ASSERT_EQ(r.size(), (size_t)0);
 }
 
-TEST(test_bd, test_proj_basico) {
+/*TEST(test_bd, test_proj_basico) {
     Driver d;
     d.leerDataset("personas");
     Respuesta r = d.consultar(Consulta(

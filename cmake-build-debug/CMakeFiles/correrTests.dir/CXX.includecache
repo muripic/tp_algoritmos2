@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/home/muripic/Documents/tp3-algo-ii-posta/src/BaseDeDatos.cpp
+BaseDeDatos.h
+/home/muripic/Documents/tp3-algo-ii-posta/src/BaseDeDatos.h
+
 /home/muripic/Documents/tp3-algo-ii-posta/src/BaseDeDatos.h
 string
 -
@@ -29,28 +33,6 @@ set
 -
 Tipos.h
 /home/muripic/Documents/tp3-algo-ii-posta/src/Tipos.h
-
-/home/muripic/Documents/tp3-algo-ii-posta/src/Driver.cpp
-cassert
--
-cstdlib
--
-sstream
--
-Driver.h
-/home/muripic/Documents/tp3-algo-ii-posta/src/Driver.h
-
-/home/muripic/Documents/tp3-algo-ii-posta/src/Driver.h
-fstream
--
-vector
--
-Registro.h
-/home/muripic/Documents/tp3-algo-ii-posta/src/Registro.h
-Consulta.h
-/home/muripic/Documents/tp3-algo-ii-posta/src/Consulta.h
-BaseDeDatos.h
-/home/muripic/Documents/tp3-algo-ii-posta/src/BaseDeDatos.h
 
 /home/muripic/Documents/tp3-algo-ii-posta/src/Registro.h
 string
