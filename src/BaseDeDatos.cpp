@@ -141,7 +141,7 @@ Respuesta BaseDeDatos::matchAux(const Consulta &q, const NombreCampo &c1, const 
     }
     Respuesta res;
     Respuesta rs = realizarConsulta(q);
-    for (Registro& r : rs) {
+    for (Registro &r : rs) {
         if (r.campos().count(c1) == 1 and r.campos().count(c2) == 1 and r[c1] == r[c2]) {
             res.push_back(r);
         }
@@ -149,35 +149,38 @@ Respuesta BaseDeDatos::matchAux(const Consulta &q, const NombreCampo &c1, const 
     return res;
 }
 
-
+Respuesta
 BaseDeDatos::joinAux(const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c1, const NombreCampo &c2) {
     Respuesta res;
-    if (size.registros._tablas.at(t1) <= size.registros._tablas.at(t2)){
-        tabla tabMen = _tablas.at(t1);
-        tabla tabMay = _tablas.at(t2);
-    } else{
-        tabla tabMay = _tablas.at(t1);
-        tabla tabMen = _tablas.at(t2);
+    Tabla *tabMen = nullptr;
+    Tabla *tabMay = nullptr;
+    if (_tablas.at(t1).registros().size() <= _tablas.at(t2).registros().size()) {
+        tabMen = &_tablas.at(t1);
+        tabMay = &_tablas.at(t2);
+    } else {
+        tabMay = &_tablas.at(t1);
+        tabMen = &_tablas.at(t2);
     }
-    linear_set<Valor>::const_iterator itClave = tabMen.valoresClave().begin();
-    while (itClave != tabMen.valoresClave().end()){
+    linear_set<Valor>::const_iterator itClave = tabMen->valoresClave().begin();
+    while (itClave != tabMen->valoresClave().end()) {
         Valor v = *itClave;
-        if tabMay.existeRegConClave(v){
+        if (tabMay->existeRegConClave(v)) {
             Registro rNuevo;
-            Registro r1 = tabMen.RegPorClave(v);
-            Registro r2 = tabMay.RegPorClave(v);
+            Registro r1 = tabMen->regPorClave(v);
+            Registro r2 = tabMay->regPorClave(v);
             linear_set<NombreCampo>::const_iterator itCamp1 = r1.campos().begin();
-            while(itCamp1 != r1.campos.end()){
-                nombreCampo c = *itCamp1;
-                res.push_back(rNuevo.definir(c, r1[c]));
+            while (itCamp1 != r1.campos().end()) {
+                NombreCampo c = *itCamp1;
+                rNuevo.definir(c, r1[c]);
                 ++itCamp1;
             }
             linear_set<NombreCampo>::const_iterator itCamp2 = r2.campos().begin();
-            while(itCamp2 != r2.campos.end()){
-                nombreCampo c = *itCamp2;
-                res.push_back(rNuevo.definir(c, r2[c])); //era esta la idea?
+            while (itCamp2 != r2.campos().end()) {
+                NombreCampo c = *itCamp2;
+                rNuevo.definir(c, r2[c]);
                 ++itCamp2;
             }
+            res.push_back(rNuevo);
         }
         ++itClave;
     }
@@ -196,12 +199,12 @@ Respuesta BaseDeDatos::renameAux(const Consulta &q, const NombreCampo &c1, const
     Respuesta::const_iterator itReg = rs.begin();
     while(itReg != rs.end()){
         Registro r = *itReg;
-        if (r.Campos().count(c2) >= 1 || r.Campos().count(c1) < 1){
+        if (r.campos().count(c2) >= 1 or r.campos().count(c1) < 1){
             res.push_back(r);
         } else {
             Registro rNuevo;
-            linear_set<NombreCampo>::const_iterator itCampos = r.Campos().begin();
-            while(itCampos != r.Campos().end()){
+            linear_set<NombreCampo>::const_iterator itCampos = r.campos().begin();
+            while(itCampos != r.campos().end()){
                 NombreCampo c = *itCampos;
                 if (c == c1){
                     rNuevo.definir(c2, r[c]);
@@ -210,26 +213,32 @@ Respuesta BaseDeDatos::renameAux(const Consulta &q, const NombreCampo &c1, const
                 }
                 ++itCampos;
             }
+            res.push_back(rNuevo);
         }
         ++itReg;
     }
     return res;
 }
 
+
+bool BaseDeDatos::pertenece(const Registro &r, const vector<Registro> &rs) const {
+    for (const Registro& e : rs) {
+        if (e == r) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 Respuesta BaseDeDatos::interAux(const Consulta &q1, const Consulta &q2) {
     Respuesta res;
     Respuesta rs1 = realizarConsulta(q1);
     Respuesta rs2 = realizarConsulta(q2);
-    Respuesta::const_iterator itRs = rs1.begin();
-    while (itRs != rs1.end()){
-        Registro r = *itR;
-        Registro r2 = std::find(rs2.begin(), rs2.end(), r);
-        if (r2 != rs2.end() && *r2 == r){
+    for (Registro &r : rs1) {
+        if (pertenece(r, rs2)) {
             res.push_back(r);
-        } else if (r2 == rs2.end() && r == *r2){
-            res.push_back(r);
-        }    
-        ++itRs;
+        }
     }
     return res;
 }
@@ -239,12 +248,12 @@ Respuesta BaseDeDatos::unionAux(const Consulta &q1, const Consulta &q2) {
     Respuesta rs1 = realizarConsulta(q1);
     Respuesta rs2 = realizarConsulta(q2);
     Respuesta::const_iterator it1 = rs1.begin();
-    while (it1 != rs1.end()){
+    while (it1 != rs1.end()) {
         res.push_back(*it1);
         ++it1;
     }
     Respuesta::const_iterator it2 = rs2.begin();
-    while (it2 != rs2.end()){
+    while (it2 != rs2.end()) {
         res.push_back(*it2);
         ++it2;
     }

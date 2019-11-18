@@ -39,6 +39,7 @@ private:
     Respuesta interAux(const Consulta &q1, const Consulta &q2);
     Respuesta unionAux(const Consulta &q1, const Consulta &q2);
     Respuesta productAux(const Consulta &q1, const Consulta &q2);
+    bool pertenece(const Registro& r, const vector<Registro>& rs) const;
 
 };
 

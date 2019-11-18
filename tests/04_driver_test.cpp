@@ -143,7 +143,7 @@ TEST(test_bd, test_match_basico) {
     ASSERT_EQ(r[0]["apellido"], "mengano");
 }
 
-TEST(test_bd, test_match_avanzado) {
+/*TEST(test_bd, test_match_avanzado) {
     Driver d;
     d.leerDataset("interurbano");
     Respuesta r = d.consultar(Consulta(
@@ -166,7 +166,7 @@ TEST(test_bd, test_match_idempotente) {
         ")"
         ));
     ASSERT_EQ(proj1(r1, "id"), proj1(r2, "id"));
-}
+}*/
 
 TEST(test_bd, test_match_vacio) {
     Driver d;
@@ -202,7 +202,7 @@ TEST(test_bd, test_proj_avanzado) {
     ASSERT_EQ(r1.size(), (size_t)371);
     ASSERT_EQ(proj2(r1, "estacion", "cantidad"), 
               proj2(r2, "estacion", "cantidad"));
-}
+}*/
 
 TEST(test_bd, test_rename_basico) {
     Driver d;
@@ -293,7 +293,7 @@ TEST(test_bd, test_union_avanzado) {
               proj4(r2, "mes", "linea", "estacion", "cantidad")); 
 }
 
-TEST(test_bd, test_product_basico) {
+/*TEST(test_bd, test_product_basico) {
     Driver d;
     d.leerDataset("conjunto1");
     d.leerDataset("conjunto2");
@@ -310,7 +310,7 @@ TEST(test_bd, test_product_basico) {
                 "C,B", "C,D", "C,E", "C,F",
                 "D,B", "D,D", "D,E", "D,F",
               }));
-}
+}*/
 
 TEST(test_bd, test_join_con_claves) {
     Driver d;
@@ -333,7 +333,7 @@ TEST(test_bd, test_join_con_claves) {
               proj4(r2, "mes", "id_linea", "id_estacion", "cantidad"));
 }
 
-TEST(test_bd, test_select_con_clave_product) {
+/*TEST(test_bd, test_select_con_clave_product) {
     Driver d;
     d.leerDataset("lineas");
     d.leerDataset("estaciones");
@@ -347,9 +347,9 @@ TEST(test_bd, test_select_con_clave_product) {
       ")"
     ));
     ASSERT_EQ(r.size(), (size_t)212);
-}
+}*/
 
-TEST(test_bd, test_join_sin_claves) {
+/*TEST(test_bd, test_join_sin_claves) {
     Driver d;
     d.leerDataset("viajes_corto");
     d.leerDataset("lineas");
@@ -366,7 +366,7 @@ TEST(test_bd, test_join_sin_claves) {
       ")"
     ));
     ASSERT_EQ(proj1(r, "nombre_linea"), set<string>({"Roca"}));
-}
+}*/
 
 TEST(test_bd, test_inter_tablas_distintas) {
     Driver d;
@@ -394,4 +394,4 @@ TEST(test_bd, test_inter_tablas_distintas) {
               proj4(r2, "mes", "linea", "estacion", "cantidad"));
     ASSERT_EQ(proj4(r1, "mes", "linea", "estacion", "cantidad"),
               proj4(r3, "mes", "linea", "estacion", "cantidad"));
-}*/
+}
