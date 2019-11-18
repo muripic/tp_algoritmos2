@@ -29,7 +29,7 @@ void Tabla::insertar(Registro &registro) {
     linear_set<NombreCampo>::const_iterator itCampos = registro.campos().begin();
     while (itCampos != registro.campos().end()) {
         pair<linear_set<Registro>::iterator, Valor> entradacol = make_pair(itNuevoReg, registro[*itCampos]);
-        _diccColumnas.at(*itCampos).insert(entradacol);
+        _diccColumnas.at(*itCampos).fast_insert(entradacol);
         ++itCampos;
     }
 }

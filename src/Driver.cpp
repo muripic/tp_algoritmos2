@@ -13,7 +13,7 @@ void Driver::crearTabla(NombreTabla& tabla, vector<NombreCampo>& campos,
     _bdd.agregarTabla(tabla, clave, cs);
 }
 
-void Driver::insertarRegistro(NombreTabla& t, Registro r) {
+void Driver::insertarRegistro(NombreTabla& t, Registro& r) {
     _bdd.agregarRegistro(r, t);
 }
 
