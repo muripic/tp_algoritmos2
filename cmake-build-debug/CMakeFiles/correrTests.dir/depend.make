@@ -19,10 +19,12 @@ CMakeFiles/correrTests.dir/src/Consulta.cpp.o: ../src/Consulta.cpp
 CMakeFiles/correrTests.dir/src/Consulta.cpp.o: ../src/Consulta.h
 CMakeFiles/correrTests.dir/src/Consulta.cpp.o: ../src/Tipos.h
 
+CMakeFiles/correrTests.dir/src/Driver.cpp.o: ../src/BaseDeDatos.h
 CMakeFiles/correrTests.dir/src/Driver.cpp.o: ../src/Consulta.h
 CMakeFiles/correrTests.dir/src/Driver.cpp.o: ../src/Driver.cpp
 CMakeFiles/correrTests.dir/src/Driver.cpp.o: ../src/Driver.h
 CMakeFiles/correrTests.dir/src/Driver.cpp.o: ../src/Registro.h
+CMakeFiles/correrTests.dir/src/Driver.cpp.o: ../src/Tabla.h
 CMakeFiles/correrTests.dir/src/Driver.cpp.o: ../src/Tipos.h
 CMakeFiles/correrTests.dir/src/Driver.cpp.o: ../src/modulos_basicos/linear_map.h
 CMakeFiles/correrTests.dir/src/Driver.cpp.o: ../src/modulos_basicos/linear_map.hpp
@@ -95,9 +97,11 @@ CMakeFiles/correrTests.dir/tests/03_basededatos_test.cpp.o: ../src/modulos_basic
 CMakeFiles/correrTests.dir/tests/03_basededatos_test.cpp.o: ../tests/03_basededatos_test.cpp
 CMakeFiles/correrTests.dir/tests/03_basededatos_test.cpp.o: ../tests/gtest-1.8.1/gtest.h
 
+CMakeFiles/correrTests.dir/tests/04_driver_test.cpp.o: ../src/BaseDeDatos.h
 CMakeFiles/correrTests.dir/tests/04_driver_test.cpp.o: ../src/Consulta.h
 CMakeFiles/correrTests.dir/tests/04_driver_test.cpp.o: ../src/Driver.h
 CMakeFiles/correrTests.dir/tests/04_driver_test.cpp.o: ../src/Registro.h
+CMakeFiles/correrTests.dir/tests/04_driver_test.cpp.o: ../src/Tabla.h
 CMakeFiles/correrTests.dir/tests/04_driver_test.cpp.o: ../src/Tipos.h
 CMakeFiles/correrTests.dir/tests/04_driver_test.cpp.o: ../src/modulos_basicos/linear_map.h
 CMakeFiles/correrTests.dir/tests/04_driver_test.cpp.o: ../src/modulos_basicos/linear_map.hpp

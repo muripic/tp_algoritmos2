@@ -107,7 +107,7 @@ TEST(test_basededatos, from) {
     bdd.agregarRegistro(char0005, "personajes");
     ASSERT_EQ(bdd.tablas().at("personajes").registros().size(), 5);
 
-    linear_set<Registro> resFrom = bdd.realizarConsulta(q1);
+    vector<Registro> resFrom = bdd.realizarConsulta(q1);
     ASSERT_EQ(resFrom.size(), 5);
-    ASSERT_EQ(resFrom.count(char0003), 1);
+    ASSERT_EQ(resFrom[2], char0003);
 }

@@ -20,23 +20,23 @@ public:
     const string_map<Tabla> &tablas() const;
     void eliminarTabla(const NombreTabla &tabla);
     void eliminarRegistro(const Valor &valor, const NombreTabla &tabla);
-    linear_set<Registro> realizarConsulta(const Consulta &consulta);
+    vector<Registro> realizarConsulta(const Consulta &consulta);
 
 private:
     string_map<Tabla> _tablas;
 
     //FUNCIONES AUXILIARES
 
-    linear_set<Registro> fromAux(const NombreTabla &t);
-    linear_set<Registro> selectAux(const Consulta &q, const NombreCampo &c, const Valor &v);
-    linear_set<Registro> selectProdAux(const Consulta &q, const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c, const Valor &v);
-    linear_set<Registro> matchAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2);
-    linear_set<Registro> joinAux(const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c1, const NombreCampo &c2);
-    linear_set<Registro> renameAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2);
-    linear_set<Registro> projAux(const Consulta &q, const set<NombreCampo> &cs);
-    linear_set<Registro> interAux(const Consulta &q1, const Consulta &q2);
-    linear_set<Registro> unionAux(const Consulta &q1, const Consulta &q2);
-    linear_set<Registro> productAux(const Consulta &q1, const Consulta &q2);
+    vector<Registro> fromAux(const NombreTabla &t);
+    vector<Registro> selectAux(const Consulta &q, const NombreCampo &c, const Valor &v);
+    vector<Registro> selectProdAux(const Consulta &q, const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c, const Valor &v);
+    vector<Registro> matchAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2);
+    vector<Registro> joinAux(const NombreTabla &t1, const NombreTabla &t2, const NombreCampo &c1, const NombreCampo &c2);
+    vector<Registro> renameAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2);
+    vector<Registro> projAux(const Consulta &q, const set<NombreCampo> &cs);
+    vector<Registro> interAux(const Consulta &q1, const Consulta &q2);
+    vector<Registro> unionAux(const Consulta &q1, const Consulta &q2);
+    vector<Registro> productAux(const Consulta &q1, const Consulta &q2);
 
 };
 

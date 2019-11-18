@@ -4,17 +4,22 @@
 
 #include "Driver.h"
 
-void Driver::crearTabla(NombreTabla tabla, vector<NombreCampo> campos,
-                        NombreCampo clave) {
-    COMPLETAR(crearTabla);
+void Driver::crearTabla(NombreTabla& tabla, vector<NombreCampo>& campos,
+                        NombreCampo& clave) {
+    linear_set<NombreCampo> cs;
+    for (const NombreCampo& c : campos){
+        cs.fast_insert(c);
+    }
+    _bdd.agregarTabla(tabla, clave, cs);
 }
 
-void Driver::insertarRegistro(NombreTabla t, Registro r) {
-    COMPLETAR(insertarRegistro);
+void Driver::insertarRegistro(NombreTabla& t, Registro r) {
+    _bdd.agregarRegistro(r, t);
 }
 
 Respuesta Driver::consultar(const Consulta& q) {
-    COMPLETAR(consultar);
+    vector<Registro> res = _bdd.realizarConsulta(q);
+    return res;
 }
 
 void Driver::leerDataset(string dataset) {

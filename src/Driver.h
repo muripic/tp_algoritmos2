@@ -6,6 +6,7 @@
 
 #include "Registro.h"
 #include "Consulta.h"
+#include "BaseDeDatos.h"
 
 typedef vector<Registro> Respuesta;
 
@@ -13,10 +14,10 @@ class Driver {
 public:
     // Deben completar los siguientes métodos para invocar a la
     // implementación de la base de datos.
-    void crearTabla(NombreTabla tabla,
-                    vector<NombreCampo> campos,
-                    NombreCampo clave);
-    void insertarRegistro(NombreTabla t, Registro r);
+    void crearTabla(NombreTabla& tabla,
+                    vector<NombreCampo>& campos,
+                    NombreCampo& clave);
+    void insertarRegistro(NombreTabla& t, Registro r);
     Respuesta consultar(const Consulta& q);
 
     // El método leerDataset está provisto por la cátedra.
@@ -34,9 +35,11 @@ public:
     // por ejemplo no hay ninguna manera de incluir comas en
     // los campos.
     void leerDataset(string dataset);
+
 private:
 
     // COMPLETAR con la representación privada.
+    BaseDeDatos _bdd;
 
     bool _leerLinea(ifstream& is, vector<string>& valores) const;
 };

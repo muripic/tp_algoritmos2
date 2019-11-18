@@ -20,10 +20,12 @@ CMakeFiles/correrTests.dir/src/Consulta.cpp.o
  /home/muripic/Documents/tp3-algo-ii-posta/src/Consulta.h
  /home/muripic/Documents/tp3-algo-ii-posta/src/Tipos.h
 CMakeFiles/correrTests.dir/src/Driver.cpp.o
+ /home/muripic/Documents/tp3-algo-ii-posta/src/BaseDeDatos.h
  /home/muripic/Documents/tp3-algo-ii-posta/src/Consulta.h
  /home/muripic/Documents/tp3-algo-ii-posta/src/Driver.cpp
  /home/muripic/Documents/tp3-algo-ii-posta/src/Driver.h
  /home/muripic/Documents/tp3-algo-ii-posta/src/Registro.h
+ /home/muripic/Documents/tp3-algo-ii-posta/src/Tabla.h
  /home/muripic/Documents/tp3-algo-ii-posta/src/Tipos.h
  /home/muripic/Documents/tp3-algo-ii-posta/src/modulos_basicos/linear_map.h
  /home/muripic/Documents/tp3-algo-ii-posta/src/modulos_basicos/linear_map.hpp
@@ -96,9 +98,11 @@ CMakeFiles/correrTests.dir/tests/03_basededatos_test.cpp.o
  /home/muripic/Documents/tp3-algo-ii-posta/tests/03_basededatos_test.cpp
  /home/muripic/Documents/tp3-algo-ii-posta/tests/gtest-1.8.1/gtest.h
 CMakeFiles/correrTests.dir/tests/04_driver_test.cpp.o
+ /home/muripic/Documents/tp3-algo-ii-posta/src/BaseDeDatos.h
  /home/muripic/Documents/tp3-algo-ii-posta/src/Consulta.h
  /home/muripic/Documents/tp3-algo-ii-posta/src/Driver.h
  /home/muripic/Documents/tp3-algo-ii-posta/src/Registro.h
+ /home/muripic/Documents/tp3-algo-ii-posta/src/Tabla.h
  /home/muripic/Documents/tp3-algo-ii-posta/src/Tipos.h
  /home/muripic/Documents/tp3-algo-ii-posta/src/modulos_basicos/linear_map.h
  /home/muripic/Documents/tp3-algo-ii-posta/src/modulos_basicos/linear_map.hpp

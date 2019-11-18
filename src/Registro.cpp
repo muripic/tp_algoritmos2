@@ -12,7 +12,11 @@ void Registro::definir(const NombreCampo& campo, const Valor& valor) {
     _registro.insert(entrada);
 }
 
-Valor Registro::operator[](const NombreCampo& campo) const {
+Valor& Registro::operator[](const NombreCampo& campo) {
+   return _registro[campo];
+}
+
+const Valor &Registro::operator[](const NombreCampo &campo) const {
     return _registro.at(campo);
 }
 

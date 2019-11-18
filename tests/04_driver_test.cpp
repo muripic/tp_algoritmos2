@@ -1,7 +1,7 @@
 #include "gtest-1.8.1/gtest.h"
 #include "../src/Driver.h"
 
-set<string> proj1(const Respuesta& r, NombreCampo c) {
+set<string> proj1(const Respuesta& r, const NombreCampo& c) {
     set<string> s;
     for (Registro reg : r) {
         s.insert(reg[c]);
@@ -9,7 +9,7 @@ set<string> proj1(const Respuesta& r, NombreCampo c) {
     return s;
 }
 
-set<string> proj2(const Respuesta& r, NombreCampo c1, NombreCampo c2) {
+set<string> proj2(const Respuesta& r, const NombreCampo& c1, const NombreCampo& c2) {
     set<string> s;
     for (Registro reg : r) {
         s.insert(reg[c1] + "," + reg[c2]);
@@ -17,8 +17,8 @@ set<string> proj2(const Respuesta& r, NombreCampo c1, NombreCampo c2) {
     return s;
 }
 
-set<string> proj4(const Respuesta& r, NombreCampo c1, NombreCampo c2,
-                                      NombreCampo c3, NombreCampo c4) {
+set<string> proj4(const Respuesta& r, const NombreCampo& c1, const NombreCampo& c2,
+                                      const NombreCampo& c3, const NombreCampo& c4) {
     set<string> s;
     for (Registro reg : r) {
         s.insert(reg[c1] + "," + reg[c2] + "," + reg[c3] + "," + reg[c4]);
@@ -130,7 +130,7 @@ TEST(test_bd, test_select_vacio) {
     ASSERT_EQ(r.size(), (size_t)0);
 }
 
-TEST(test_bd, test_match_basico) {
+/*TEST(test_bd, test_match_basico) {
     Driver d;
     d.leerDataset("personas");
     Respuesta r = d.consultar(Consulta(
@@ -393,4 +393,4 @@ TEST(test_bd, test_inter_tablas_distintas) {
               proj4(r2, "mes", "linea", "estacion", "cantidad"));
     ASSERT_EQ(proj4(r1, "mes", "linea", "estacion", "cantidad"),
               proj4(r3, "mes", "linea", "estacion", "cantidad"));
-}
+}*/
