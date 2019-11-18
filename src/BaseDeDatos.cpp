@@ -192,7 +192,27 @@ Respuesta BaseDeDatos::projAux(const Consulta &q, const set<NombreCampo> &cs) {
 
 Respuesta BaseDeDatos::renameAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2) {
     Respuesta res;
-    //COMPLETAR
+    Respuesta rs = realizarConsulta(q);
+    Respuesta::const_iterator itReg = rs.begin();
+    while(itReg != rs.end()){
+        Registro r = *itReg;
+        if (r.Campos().count(c2) >= 1 || r.Campos().count(c1) < 1){
+            res.push_back(r);
+        } else {
+            Registro rNuevo;
+            linear_set<NombreCampo>::const_iterator itCampos = r.Campos().begin();
+            while(itCampos != r.Campos().end()){
+                NombreCampo c = *itCampos;
+                if (c == c1){
+                    rNuevo.definir(c2, r[c]);
+                } else {
+                    rNuevo.definir(c, r[c]);
+                }
+                ++itCampos;
+            }
+        }
+        ++itReg;
+    }
     return res;
 }
 
