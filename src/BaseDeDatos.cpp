@@ -84,11 +84,13 @@ Respuesta BaseDeDatos::selectAux(const Consulta &q, const NombreCampo &c, const 
     } else if (q.tipo_consulta() == PRODUCT and q.subconsulta1().tipo_consulta() == FROM and
                q.subconsulta2().tipo_consulta() == FROM) {
         //Optimización 5: Select de clave de un producto
+        cout << "Select de clave de un producto" << endl;
         NombreTabla nt1 = q.subconsulta1().nombre_tabla();
         NombreTabla nt2 = q.subconsulta2().nombre_tabla();
         if (nt1 != nt2 and _tablas.at(nt1).clave() == c) {
-            res = selectProdAux(q.subconsulta1().subconsulta1(), nt1, nt2, c, v);
+            res = selectProdAux(q.subconsulta1(), nt1, nt2, c, v);
         }
+        //"select(product(from(lineas),from(estaciones)),id_linea, '1')"
     } else {
         //Caso general
         Respuesta rs = realizarConsulta(q);
@@ -119,7 +121,7 @@ BaseDeDatos::selectProdAux(const Consulta &q, const NombreTabla &t1, const Nombr
             ++itCamp1;
         }
         linear_set<NombreCampo>::const_iterator itCamp2 = r2.campos().begin();
-        while (itCamp1 != r2.campos().end()) {
+        while (itCamp2 != r2.campos().end()) {
             res[res.size() - 1].definir(*itCamp2, r2[*itCamp2]);
             ++itCamp2;
         }
@@ -190,23 +192,19 @@ BaseDeDatos::joinAux(const NombreTabla &t1, const NombreTabla &t2, const NombreC
 Respuesta BaseDeDatos::projAux(const Consulta &q, const set<NombreCampo> &cs) {
     Respuesta res;
     Respuesta rs = realizarConsulta(q);
-    Respuesta::const_iterator itReg = rs.begin();
-    while(itReg != rs.end()){
-        Registro r = *itReg;
+    for (Registro& r : rs){
+        auto itCampos = r.campos().begin();
         Registro rNuevo;
-        linear_set<NombreCampo>::const_iterator itCampos = r.Campos().begin();
-        while(itCampos != r.Campos().end()){
+        while(itCampos != r.campos().end()){
             NombreCampo c = *itCampos;
-            if (cs.count(c) >= 1){
+            if (cs.count(c) == 1){
                 rNuevo.definir(c, r[c]);
             }
-            res.push_back(rNuevo);
             ++itCampos;
         }
-        if (!rNuevo.Campos().empty()){
+        if (!rNuevo.campos().empty()){
             res.push_back(rNuevo);
         }
-        ++itReg;
     }
     return res;
 }
@@ -283,21 +281,21 @@ Respuesta BaseDeDatos::productAux(const Consulta &q1, const Consulta &q2) {
     Respuesta res;
     Respuesta rs1 = realizarConsulta(q1);
     Respuesta rs2 = realizarConsulta(q2);
-    Respuesta::iterator it1 = rs1.begin();
+    auto it1 = rs1.begin();
     while(it1 != rs1.end()){
-        Respuesta::iterator it2 = rs2.begin();
+        auto it2 = rs2.begin();
         while (it2 != rs2.end()){
             Registro rNuevo;
             Registro r1 = *it1;
             Registro r2 = *it2;
-            linear_set<NombreCampo>::iterator itCamp1 = r1.Campos().begin();
-            while(itCamp1 != r1.Campos().end()){
+            linear_set<NombreCampo>::const_iterator itCamp1 = r1.campos().begin();
+            while(itCamp1 != r1.campos().end()){
                 NombreCampo c = *itCamp1;
                 rNuevo.definir(c, r1[c]);
                 ++itCamp1;
             }
-            linear_set<nombreCampo>::iterator itCamp2 = r2.Campos().begin();
-            while(itCamp2 != r2.Campos().end()){
+            linear_set<NombreCampo>::const_iterator itCamp2 = r2.campos().begin();
+            while(itCamp2 != r2.campos().end()){
                 NombreCampo c = *itCamp2;
                 rNuevo.definir(c, r2[c]);
                 ++itCamp2;
