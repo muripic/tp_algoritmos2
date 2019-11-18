@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/muripic/Documents/tp3-algo-ii-posta/tests/gtest-1.8.1/gtest-all.cc
+/home/muri/Documents/TP3/tp3-algo-ii-posta/tests/gtest-1.8.1/gtest-all.cc
 gtest.h
-/home/muripic/Documents/tp3-algo-ii-posta/tests/gtest-1.8.1/gtest.h
+/home/muri/Documents/TP3/tp3-algo-ii-posta/tests/gtest-1.8.1/gtest.h
 ctype.h
 -
 math.h
@@ -114,13 +114,13 @@ windows.h
 crt_externs.h
 -
 absl/debugging/failure_signal_handler.h
-/home/muripic/Documents/tp3-algo-ii-posta/tests/gtest-1.8.1/absl/debugging/failure_signal_handler.h
+/home/muri/Documents/TP3/tp3-algo-ii-posta/tests/gtest-1.8.1/absl/debugging/failure_signal_handler.h
 absl/debugging/stacktrace.h
-/home/muripic/Documents/tp3-algo-ii-posta/tests/gtest-1.8.1/absl/debugging/stacktrace.h
+/home/muri/Documents/TP3/tp3-algo-ii-posta/tests/gtest-1.8.1/absl/debugging/stacktrace.h
 absl/debugging/symbolize.h
-/home/muripic/Documents/tp3-algo-ii-posta/tests/gtest-1.8.1/absl/debugging/symbolize.h
+/home/muri/Documents/TP3/tp3-algo-ii-posta/tests/gtest-1.8.1/absl/debugging/symbolize.h
 absl/strings/str_cat.h
-/home/muripic/Documents/tp3-algo-ii-posta/tests/gtest-1.8.1/absl/strings/str_cat.h
+/home/muri/Documents/TP3/tp3-algo-ii-posta/tests/gtest-1.8.1/absl/strings/str_cat.h
 crt_externs.h
 -
 errno.h
@@ -216,7 +216,7 @@ ostream
 string
 -
 
-/home/muripic/Documents/tp3-algo-ii-posta/tests/gtest-1.8.1/gtest.h
+/home/muri/Documents/TP3/tp3-algo-ii-posta/tests/gtest-1.8.1/gtest.h
 limits
 -
 ostream
@@ -358,11 +358,11 @@ vector
 tuple
 -
 absl/strings/string_view.h
-/home/muripic/Documents/tp3-algo-ii-posta/tests/gtest-1.8.1/absl/strings/string_view.h
+/home/muri/Documents/TP3/tp3-algo-ii-posta/tests/gtest-1.8.1/absl/strings/string_view.h
 absl/types/optional.h
-/home/muripic/Documents/tp3-algo-ii-posta/tests/gtest-1.8.1/absl/types/optional.h
+/home/muri/Documents/TP3/tp3-algo-ii-posta/tests/gtest-1.8.1/absl/types/optional.h
 absl/types/variant.h
-/home/muripic/Documents/tp3-algo-ii-posta/tests/gtest-1.8.1/absl/types/variant.h
+/home/muri/Documents/TP3/tp3-algo-ii-posta/tests/gtest-1.8.1/absl/types/variant.h
 iosfwd
 -
 vector

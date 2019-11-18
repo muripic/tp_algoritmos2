@@ -8,8 +8,7 @@ const linear_set<NombreCampo>& Registro::campos() const {
 }
 
 void Registro::definir(const NombreCampo& campo, const Valor& valor) {
-    pair<NombreCampo, Valor> entrada = make_pair(campo, valor);
-    _registro.insert(entrada);
+    _registro.insert(make_pair(campo, valor));
 }
 
 Valor& Registro::operator[](const NombreCampo& campo) {

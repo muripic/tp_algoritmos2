@@ -6,8 +6,7 @@ BaseDeDatos::BaseDeDatos() : _tablas() {
 void
 BaseDeDatos::agregarTabla(const NombreTabla &tabla, const NombreCampo &clave, const linear_set<NombreCampo> &campos) {
     Tabla nueva(campos, clave);
-    pair<string, Tabla> entrada = make_pair(tabla, nueva);
-    _tablas.insert(entrada);
+    _tablas.insert(make_pair(tabla, nueva));
 }
 
 void BaseDeDatos::agregarRegistro(Registro &registro, const NombreTabla &tabla) {
@@ -84,13 +83,11 @@ Respuesta BaseDeDatos::selectAux(const Consulta &q, const NombreCampo &c, const 
     } else if (q.tipo_consulta() == PRODUCT and q.subconsulta1().tipo_consulta() == FROM and
                q.subconsulta2().tipo_consulta() == FROM) {
         //Optimización 5: Select de clave de un producto
-        cout << "Select de clave de un producto" << endl;
         NombreTabla nt1 = q.subconsulta1().nombre_tabla();
         NombreTabla nt2 = q.subconsulta2().nombre_tabla();
         if (nt1 != nt2 and _tablas.at(nt1).clave() == c) {
-            res = selectProdAux(q.subconsulta1(), nt1, nt2, c, v);
+            return selectProdAux(q.subconsulta1(), nt1, nt2, c, v);
         }
-        //"select(product(from(lineas),from(estaciones)),id_linea, '1')"
     } else {
         //Caso general
         Respuesta rs = realizarConsulta(q);
@@ -113,7 +110,7 @@ BaseDeDatos::selectProdAux(const Consulta &q, const NombreTabla &t1, const Nombr
     linear_set<Registro>::const_iterator it = _tablas.at(t2).registros().begin();
     while (it != _tablas.at(t2).registros().end()) {
         Registro r2 = *it;
-        Registro rNuevo; //OJO: Ver si funciona así
+        Registro rNuevo;
         res.push_back(rNuevo);
         linear_set<NombreCampo>::const_iterator itCamp1 = r1.campos().begin();
         while (itCamp1 != r1.campos().end()) {

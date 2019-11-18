@@ -37,7 +37,6 @@ void string_map<T>::recDelete(Nodo *actual) {
             delete actual->definicion;
         }
         delete actual;
-        //actual = nullptr;
     }
 }
 
@@ -199,3 +198,17 @@ template<typename T>
 bool string_map<T>::empty() const {
     return raiz == nullptr;
 }
+
+template<typename T>
+typename string_map<T>::Nodo* string_map<T>::copiarSubtrie(Nodo *actual){
+    Nodo *nuevo = new Nodo;
+    if (actual->definicion != nullptr) {
+        nuevo->definicion = new T(*actual->definicion);
+    }
+    for (int i = 0; i < actual->siguientes.size(); i++) {
+        if (actual->siguientes[i] != nullptr) {
+            nuevo->siguientes[i] = copiarSubtrie(actual->siguientes[i]);
+        }
+    }
+    return nuevo;
+};

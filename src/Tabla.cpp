@@ -5,8 +5,7 @@ Tabla::Tabla(const linear_set<NombreCampo> &campos, const NombreCampo &clave) : 
     linear_set<NombreCampo>::const_iterator it = campos.begin();
     while (it != campos.end()) {
         linear_map<linear_set<Registro>::iterator, Valor> nuevo;
-        pair<NombreCampo, linear_map<linear_set<Registro>::iterator, Valor>> entrada = make_pair(*it, nuevo);
-        _diccColumnas.insert(entrada);
+        _diccColumnas.insert(make_pair(*it, nuevo));
         ++it;
     }
 }
@@ -24,12 +23,10 @@ void Tabla::insertar(Registro &registro) {
         _registros.erase(*itReg);
     }
     linear_set<Registro>::iterator itNuevoReg = _registros.fast_insert(registro);
-    pair<Valor, linear_set<Registro>::iterator> entradavc = make_pair(vc, itNuevoReg);
-    _diccValorClave.insert(entradavc);
+    _diccValorClave.insert(make_pair(vc, itNuevoReg));
     linear_set<NombreCampo>::const_iterator itCampos = registro.campos().begin();
     while (itCampos != registro.campos().end()) {
-        pair<linear_set<Registro>::iterator, Valor> entradacol = make_pair(itNuevoReg, registro[*itCampos]);
-        _diccColumnas.at(*itCampos).fast_insert(entradacol);
+        _diccColumnas.at(*itCampos).fast_insert(make_pair(itNuevoReg, registro[*itCampos]));
         ++itCampos;
     }
 }

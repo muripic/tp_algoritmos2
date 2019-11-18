@@ -66,18 +66,7 @@ private:
 
     void recDelete(Nodo *actual);
 
-    Nodo* copiarSubtrie(Nodo *actual){
-        Nodo *nuevo = new Nodo;
-        if (actual->definicion != nullptr) {
-            nuevo->definicion = new T(*actual->definicion);
-        }
-        for (int i = 0; i < actual->siguientes.size(); i++) {
-            if (actual->siguientes[i] != nullptr) {
-                nuevo->siguientes[i] = copiarSubtrie(actual->siguientes[i]);
-            }
-        }
-        return nuevo;
-    };
+    Nodo* copiarSubtrie(Nodo *actual);
 
 };
 
