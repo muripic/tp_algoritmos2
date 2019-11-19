@@ -50,13 +50,16 @@ public:
     // operator[]: Acceso o definición de pares clave/valor
     T &operator[](const string &clave);
 
+    static const int CANTCHAR = 96;
+    const int INICIO = 32;
+
 private:
 
     struct Nodo {
         vector<Nodo *> siguientes;
         T *definicion;
 
-        Nodo() : definicion(nullptr), siguientes(vector<Nodo*> (137, nullptr)){
+        Nodo() : definicion(nullptr), siguientes(vector<Nodo*> (CANTCHAR, nullptr)){
         };
     };
 
