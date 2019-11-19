@@ -50,14 +50,14 @@ void string_map<T>::insert(const pair<string, T> &entrada) {
     Nodo *actual = raiz;
     int i = 0;
     while (i < entrada.first.size() and
-           actual->siguientes[entrada.first[i] - 32] != nullptr) { //Recorre los nodos ya existentes
-        Nodo *sig = actual->siguientes[entrada.first[i] - 32];
+           actual->siguientes[entrada.first[i] - INICIO] != nullptr) { //Recorre los nodos ya existentes
+        Nodo *sig = actual->siguientes[entrada.first[i] - INICIO];
         actual = sig;
         i++;
     }
     while (i < entrada.first.size()) { //Define los que quedan
         Nodo *nuevo = new Nodo;
-        actual->siguientes[entrada.first[i] - 32] = nuevo;
+        actual->siguientes[entrada.first[i] - INICIO] = nuevo;
         actual = nuevo;
         i++;
     }
@@ -78,8 +78,8 @@ T &string_map<T>::operator[](const string &clave) {
     Nodo *actual = raiz;
     int i = 0;
     while (i < clave.size() and
-           actual->siguientes[clave[i] - 32] != nullptr) { //Recorre los nodos ya existentes
-        Nodo *sig = actual->siguientes[clave[i] - 32];
+           actual->siguientes[clave[i] - INICIO] != nullptr) { //Recorre los nodos ya existentes
+        Nodo *sig = actual->siguientes[clave[i] - INICIO];
         actual = sig;
         i++;
     }
@@ -88,7 +88,7 @@ T &string_map<T>::operator[](const string &clave) {
     } else {
         while (i < clave.size()) { //Define los que quedan (si quedan)
             Nodo *nuevo = new Nodo;
-            actual->siguientes[clave[i] - 32] = nuevo;
+            actual->siguientes[clave[i] - INICIO] = nuevo;
             actual = nuevo;
             i++;
         }
@@ -107,7 +107,7 @@ int string_map<T>::count(const string &clave) const {
         Nodo *actual = raiz;
         int i = 0;
         while (i < clave.size()) {
-            Nodo *sig = actual->siguientes[clave[i] - 32];
+            Nodo *sig = actual->siguientes[clave[i] - INICIO];
             if (sig == nullptr) {
                 return 0;
             }
@@ -127,7 +127,7 @@ const T &string_map<T>::at(const string &clave) const {
     Nodo *actual = raiz;
     int i = 0;
     while (i < clave.size()) {
-        actual = actual->siguientes[clave[i] - 32];
+        actual = actual->siguientes[clave[i] - INICIO];
         i++;
     }
     return *actual->definicion;
@@ -138,7 +138,7 @@ T &string_map<T>::at(const string &clave) {
     Nodo *actual = raiz;
     int i = 0;
     while (i < clave.size()) {
-        actual = actual->siguientes[clave[i] - 32];
+        actual = actual->siguientes[clave[i] - INICIO];
         i++;
     }
     return *actual->definicion;
@@ -172,12 +172,12 @@ void string_map<T>::erase(const string &clave) {
     _claves.erase(clave);
     actual->definicion = nullptr;
     if (cantHijos(actual->siguientes) == 0) {
-        Nodo *siguiente = ultimo->siguientes[clave[ultPos] - 32];
-        ultimo->siguientes[clave[ultPos] - 32] = nullptr;
+        Nodo *siguiente = ultimo->siguientes[clave[ultPos] - INICIO];
+        ultimo->siguientes[clave[ultPos] - INICIO] = nullptr;
         ultimo = siguiente;
         ultPos++;
         while (ultPos < clave.size()) {
-            siguiente = ultimo->siguientes[clave[ultPos] - 32];
+            siguiente = ultimo->siguientes[clave[ultPos] - INICIO];
             delete ultimo;
             ultimo = siguiente;
             ultPos++;
