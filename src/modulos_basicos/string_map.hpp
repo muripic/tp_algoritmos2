@@ -31,7 +31,9 @@ template<typename T>
 void string_map<T>::recDelete(Nodo *actual) {
     if (actual != nullptr) {
         for (int i = 0; i < actual->siguientes.size(); i++) {
-            recDelete(actual->siguientes[i]);
+            if (actual->siguientes[i] != nullptr) {
+                recDelete(actual->siguientes[i]);
+            }
         }
         if (actual->definicion != nullptr) {
             delete actual->definicion;
@@ -48,14 +50,14 @@ void string_map<T>::insert(const pair<string, T> &entrada) {
     Nodo *actual = raiz;
     int i = 0;
     while (i < entrada.first.size() and
-           actual->siguientes[entrada.first[i]] != nullptr) { //Recorre los nodos ya existentes
-        Nodo *sig = actual->siguientes[entrada.first[i]];
+           actual->siguientes[entrada.first[i] - 32] != nullptr) { //Recorre los nodos ya existentes
+        Nodo *sig = actual->siguientes[entrada.first[i] - 32];
         actual = sig;
         i++;
     }
     while (i < entrada.first.size()) { //Define los que quedan
         Nodo *nuevo = new Nodo;
-        actual->siguientes[entrada.first[i]] = nuevo;
+        actual->siguientes[entrada.first[i] - 32] = nuevo;
         actual = nuevo;
         i++;
     }
@@ -76,8 +78,8 @@ T &string_map<T>::operator[](const string &clave) {
     Nodo *actual = raiz;
     int i = 0;
     while (i < clave.size() and
-           actual->siguientes[clave[i]] != nullptr) { //Recorre los nodos ya existentes
-        Nodo *sig = actual->siguientes[clave[i]];
+           actual->siguientes[clave[i] - 32] != nullptr) { //Recorre los nodos ya existentes
+        Nodo *sig = actual->siguientes[clave[i] - 32];
         actual = sig;
         i++;
     }
@@ -86,7 +88,7 @@ T &string_map<T>::operator[](const string &clave) {
     } else {
         while (i < clave.size()) { //Define los que quedan (si quedan)
             Nodo *nuevo = new Nodo;
-            actual->siguientes[clave[i]] = nuevo;
+            actual->siguientes[clave[i] - 32] = nuevo;
             actual = nuevo;
             i++;
         }
@@ -105,7 +107,7 @@ int string_map<T>::count(const string &clave) const {
         Nodo *actual = raiz;
         int i = 0;
         while (i < clave.size()) {
-            Nodo *sig = actual->siguientes[clave[i]];
+            Nodo *sig = actual->siguientes[clave[i] - 32];
             if (sig == nullptr) {
                 return 0;
             }
@@ -125,7 +127,7 @@ const T &string_map<T>::at(const string &clave) const {
     Nodo *actual = raiz;
     int i = 0;
     while (i < clave.size()) {
-        actual = actual->siguientes[clave[i]];
+        actual = actual->siguientes[clave[i] - 32];
         i++;
     }
     return *actual->definicion;
@@ -136,7 +138,7 @@ T &string_map<T>::at(const string &clave) {
     Nodo *actual = raiz;
     int i = 0;
     while (i < clave.size()) {
-        actual = actual->siguientes[clave[i]];
+        actual = actual->siguientes[clave[i] - 32];
         i++;
     }
     return *actual->definicion;
@@ -163,19 +165,19 @@ void string_map<T>::erase(const string &clave) {
             ultimo = actual;
             ultPos = i;
         }
-        actual = actual->siguientes[clave[i]];
+        actual = actual->siguientes[clave[i] - 32];
     }
     delete actual->definicion;
     _size--;
     _claves.erase(clave);
     actual->definicion = nullptr;
     if (cantHijos(actual->siguientes) == 0) {
-        Nodo *siguiente = ultimo->siguientes[clave[ultPos]];
-        ultimo->siguientes[clave[ultPos]] = nullptr;
+        Nodo *siguiente = ultimo->siguientes[clave[ultPos] - 32];
+        ultimo->siguientes[clave[ultPos] - 32] = nullptr;
         ultimo = siguiente;
         ultPos++;
         while (ultPos < clave.size()) {
-            siguiente = ultimo->siguientes[clave[ultPos]];
+            siguiente = ultimo->siguientes[clave[ultPos] - 32];
             delete ultimo;
             ultimo = siguiente;
             ultPos++;
@@ -190,7 +192,7 @@ int string_map<T>::size() const {
 }
 
 template<typename T>
-const linear_set<string>& string_map<T>::claves() const{
+const linear_set<string> &string_map<T>::claves() const {
     return _claves;
 }
 
@@ -200,15 +202,17 @@ bool string_map<T>::empty() const {
 }
 
 template<typename T>
-typename string_map<T>::Nodo* string_map<T>::copiarSubtrie(Nodo *actual){
-    Nodo *nuevo = new Nodo;
-    if (actual->definicion != nullptr) {
-        nuevo->definicion = new T(*actual->definicion);
-    }
-    for (int i = 0; i < actual->siguientes.size(); i++) {
-        if (actual->siguientes[i] != nullptr) {
-            nuevo->siguientes[i] = copiarSubtrie(actual->siguientes[i]);
+typename string_map<T>::Nodo *string_map<T>::copiarSubtrie(Nodo *actual) {
+    if (actual != nullptr) {
+        Nodo *nuevo = new Nodo;
+        if (actual->definicion != nullptr) {
+            nuevo->definicion = new T(*actual->definicion);
         }
+        for (int i = 0; i < actual->siguientes.size(); i++) {
+            if (actual->siguientes[i] != nullptr) {
+                nuevo->siguientes[i] = copiarSubtrie(actual->siguientes[i]);
+            }
+        }
+        return nuevo;
     }
-    return nuevo;
-};
+}
