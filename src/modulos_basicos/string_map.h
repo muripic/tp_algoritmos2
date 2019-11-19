@@ -56,7 +56,7 @@ private:
         vector<Nodo *> siguientes;
         T *definicion;
 
-        Nodo() : definicion(nullptr), siguientes(vector<Nodo*> (256, nullptr)){
+        Nodo() : definicion(nullptr), siguientes(vector<Nodo*> (137, nullptr)){
         };
     };
 
