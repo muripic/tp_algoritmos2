@@ -18,7 +18,10 @@ void Driver::insertarRegistro(NombreTabla& t, Registro& r) {
 }
 
 Respuesta Driver::consultar(const Consulta& q) {
-    return _bdd.realizarConsulta(q);
+    Respuesta* rs = &_bdd.realizarConsulta(q);
+    Respuesta res = *rs;
+    delete rs;
+    return res;
 }
 
 void Driver::leerDataset(string dataset) {
