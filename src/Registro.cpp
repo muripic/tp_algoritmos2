@@ -28,3 +28,7 @@ bool Registro::operator==(const Registro& registro) const{
     }
     return res;
 }
+
+void Registro::borrarCampo(const NombreCampo& campo){
+    _registro.erase(campo);
+}
