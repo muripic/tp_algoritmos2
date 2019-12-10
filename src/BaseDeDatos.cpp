@@ -56,6 +56,7 @@ Respuesta &BaseDeDatos::fromAux(const NombreTabla &t) {
 
 Respuesta &BaseDeDatos::selectAux(const Consulta &q, const NombreCampo &c, const Valor &v) {
     if (q.tipo_consulta() == FROM and _tablas.count(q.nombre_tabla()) == 1) {
+
         //Optimización 1: Select con clave
         Tabla *t = &(_tablas.at(q.nombre_tabla()));
         if (c == t->clave()) {
@@ -63,6 +64,7 @@ Respuesta &BaseDeDatos::selectAux(const Consulta &q, const NombreCampo &c, const
             res->push_back(t->regPorClave(v));
             return *res;
         } else if (t->campos().count(c) == 1) {
+
             //Optimización 2: Select sin clave
             Respuesta *res = new Respuesta;
             auto itCol = t->obtenerColumna(c).begin();
@@ -71,13 +73,14 @@ Respuesta &BaseDeDatos::selectAux(const Consulta &q, const NombreCampo &c, const
                     auto itR = itCol->first;
                     res->push_back(*itR);
                 }
-                ++itCol;
+                itCol++;
             }
             return *res;
         }
     } else if (q.tipo_consulta() == SELECT and q.subconsulta1().tipo_consulta() == FROM and
                _tablas.count(q.subconsulta1().nombre_tabla()) == 1 and
                c == _tablas.at(q.subconsulta1().nombre_tabla()).clave()) {
+
         //Optimización 4: Select con clave de select sin clave
         Respuesta *res = new Respuesta;
         Tabla *t = &(_tablas.at(q.subconsulta1().nombre_tabla()));
@@ -87,26 +90,24 @@ Respuesta &BaseDeDatos::selectAux(const Consulta &q, const NombreCampo &c, const
         return *res;
     } else if (q.tipo_consulta() == PRODUCT and q.subconsulta1().tipo_consulta() == FROM and
                q.subconsulta2().tipo_consulta() == FROM) {
+
         //Optimización 5: Select de clave de un producto
         NombreTabla nt1 = q.subconsulta1().nombre_tabla();
         NombreTabla nt2 = q.subconsulta2().nombre_tabla();
         if (nt1 != nt2 and _tablas.at(nt1).clave() == c) {
             return selectProdAux(q.subconsulta1(), nt1, nt2, c, v);
         }
-    } else {
-        //Caso general
-        Respuesta *res = new Respuesta;     //CON COPIA
-        Respuesta *rs = &realizarConsulta(q);
-        auto itR = rs->begin();
-        while (itR != rs->end()) {
-            if (itR->campos().count(c) == 1 and (*itR)[c] == v) {
-                res->push_back(*itR);
-            }
-            ++itR;
-        }
-        delete rs;
-        return *res;
     }
+    //Caso general
+    Respuesta *res = new Respuesta;
+    Respuesta *rs = &realizarConsulta(q);
+    for (const Registro &r : *rs) {
+        if (r.campos().count(c) == 1 and r[c] == v) {
+            res->push_back(r);
+        }
+    }
+    delete rs;
+    return *res;
 }
 
 Respuesta &
@@ -114,17 +115,17 @@ BaseDeDatos::selectProdAux(const Consulta &q, const NombreTabla &t1, const Nombr
                            const Valor &v) {
     Respuesta *res = new Respuesta;
     Respuesta *rs = &selectAux(q, c, v);
-    Registro r1 = *(rs->begin());
-    linear_set<Registro>::const_iterator it = _tablas.at(t2).registros().begin();
+    Registro r1 = (*rs)[0];
+    auto it = _tablas.at(t2).registros().begin();
     while (it != _tablas.at(t2).registros().end()) {
         Registro r2 = *it;
         Registro rNuevo;
-        linear_set<NombreCampo>::const_iterator itCamp1 = r1.campos().begin();
+        auto itCamp1 = r1.campos().begin();
         while (itCamp1 != r1.campos().end()) {
             rNuevo.definir(*itCamp1, r1[*itCamp1]);
             ++itCamp1;
         }
-        linear_set<NombreCampo>::const_iterator itCamp2 = r2.campos().begin();
+        auto itCamp2 = r2.campos().begin();
         while (itCamp2 != r2.campos().end()) {
             rNuevo.definir(*itCamp2, r2[*itCamp2]);
             ++itCamp2;
@@ -148,7 +149,9 @@ Respuesta &BaseDeDatos::matchAux(const Consulta &q, const NombreCampo &c1, const
         _tablas.at(q.subconsulta2().nombre_tabla()).clave() == c2) {
         return joinAux(q.subconsulta1().nombre_tabla(), q.subconsulta2().nombre_tabla(), c1, c2);
     } else if (q.tipo_consulta() == FROM and _tablas.at(q.nombre_tabla()).campos().count(c1) == 1 and
-               _tablas.at(q.nombre_tabla()).campos().count(c2) == 1) { //NUEVA OPTIMIZACIÓN: Match de from
+               _tablas.at(q.nombre_tabla()).campos().count(c2) == 1) {
+
+        //NUEVA OPTIMIZACIÓN: Match de from
         Respuesta *res = new Respuesta;
         for (const Registro &r : _tablas.at(q.nombre_tabla()).registros()) {
             if (r[c1] == r[c2]) {
@@ -157,15 +160,29 @@ Respuesta &BaseDeDatos::matchAux(const Consulta &q, const NombreCampo &c1, const
         }
         return *res;
     } else {
-        Respuesta *res = new Respuesta;
-        Respuesta *rs = &realizarConsulta(q);
-        for (Registro &r : *rs) {
-            if (r.campos().count(c1) == 1 and r.campos().count(c2) == 1 and r[c1] == r[c2]) {
-                res->push_back(r);
+        /*Respuesta *res = &realizarConsulta(q); //SIN COPIAR
+        int size = res->size();
+        int i = 0;
+        while (i < size) {
+            if ((*res)[i].campos().count(c1) == 1 and (*res)[i].campos().count(c2) == 1 and
+                (*res)[i][c1] == (*res)[i][c2]) {
+                i++;
+            } else {
+                swap((*res)[i], (*res)[size - 1]);
+                res->pop_back();
+                size--;
             }
         }
-        delete rs;
-        return *res;
+        return *res;*/
+        Respuesta *res = new Respuesta;   //CON COPIA
+          Respuesta *rs = &realizarConsulta(q);
+          for (const Registro &r : *rs) {
+              if (r.campos().count(c1) == 1 and r.campos().count(c2) == 1 and r[c1] == r[c2]) {
+                  res->push_back(r);
+              }
+          }
+          delete rs;
+          return *res;
     }
 }
 
@@ -181,20 +198,20 @@ BaseDeDatos::joinAux(const NombreTabla &t1, const NombreTabla &t2, const NombreC
         tabMay = &_tablas.at(t1);
         tabMen = &_tablas.at(t2);
     }
-    linear_set<Valor>::const_iterator itClave = tabMen->valoresClave().begin();
+    auto itClave = tabMen->valoresClave().begin();
     while (itClave != tabMen->valoresClave().end()) {
         Valor v = *itClave;
         if (tabMay->existeRegConClave(v)) {
             Registro rNuevo;
             Registro r1 = tabMen->regPorClave(v);
             Registro r2 = tabMay->regPorClave(v);
-            linear_set<NombreCampo>::const_iterator itCamp1 = r1.campos().begin();
+            auto itCamp1 = r1.campos().begin();
             while (itCamp1 != r1.campos().end()) {
                 NombreCampo c = *itCamp1;
                 rNuevo.definir(c, r1[c]);
                 ++itCamp1;
             }
-            linear_set<NombreCampo>::const_iterator itCamp2 = r2.campos().begin();
+            auto itCamp2 = r2.campos().begin();
             while (itCamp2 != r2.campos().end()) {
                 NombreCampo c = *itCamp2;
                 rNuevo.definir(c, r2[c]);
@@ -210,7 +227,7 @@ BaseDeDatos::joinAux(const NombreTabla &t1, const NombreTabla &t2, const NombreC
 Respuesta &BaseDeDatos::projAux(const Consulta &q, const set<NombreCampo> &cs) {
     Respuesta *res = new Respuesta;
     Respuesta *rs = &realizarConsulta(q);
-    for (Registro &r : *rs) {
+    for (const Registro &r : *rs) {
         auto itCampos = r.campos().begin();
         Registro rNuevo;
         while (itCampos != r.campos().end()) {
@@ -229,30 +246,13 @@ Respuesta &BaseDeDatos::projAux(const Consulta &q, const set<NombreCampo> &cs) {
 }
 
 Respuesta &BaseDeDatos::renameAux(const Consulta &q, const NombreCampo &c1, const NombreCampo &c2) {
-    Respuesta *res = new Respuesta;
-    Respuesta *rs = &realizarConsulta(q);
-    Respuesta::const_iterator itReg = rs->begin();
-    while (itReg != rs->end()) {
-        Registro r = *itReg;
-        if (r.campos().count(c2) >= 1 or r.campos().count(c1) < 1) {
-            res->push_back(r);
-        } else {
-            Registro rNuevo;
-            linear_set<NombreCampo>::const_iterator itCampos = r.campos().begin();
-            while (itCampos != r.campos().end()) {
-                NombreCampo c = *itCampos;
-                if (c == c1) {
-                    rNuevo.definir(c2, r[c]);
-                } else {
-                    rNuevo.definir(c, r[c]);
-                }
-                ++itCampos;
-            }
-            res->push_back(rNuevo);
+    Respuesta *res = &realizarConsulta(q);
+    for (Registro &r : *res) {
+        if (r.campos().count(c2) == 0 and r.campos().count(c1) == 1) {
+            r.definir(c2, r[c1]);
+            r.borrarCampo(c1);
         }
-        ++itReg;
     }
-    delete rs;
     return *res;
 }
 
@@ -271,7 +271,7 @@ Respuesta &BaseDeDatos::interAux(const Consulta &q1, const Consulta &q2) {
     Respuesta *res = new Respuesta;
     Respuesta *rs1 = &realizarConsulta(q1);
     Respuesta *rs2 = &realizarConsulta(q2);
-    for (Registro &r : *rs1) {
+    for (const Registro &r : *rs1) {
         if (pertenece(r, *rs2)) {
             res->push_back(r);
         }
@@ -282,52 +282,36 @@ Respuesta &BaseDeDatos::interAux(const Consulta &q1, const Consulta &q2) {
 }
 
 Respuesta &BaseDeDatos::unionAux(const Consulta &q1, const Consulta &q2) {
-    Respuesta *res = new Respuesta;
     Respuesta *rs1 = &realizarConsulta(q1);
     Respuesta *rs2 = &realizarConsulta(q2);
-    Respuesta::const_iterator it1 = rs1->begin();
-    while (it1 != rs1->end()) {
-        res->push_back(*it1);
-        ++it1;
+    for (const Registro &r : *rs2) {
+        rs1->push_back(r);
     }
-    Respuesta::const_iterator it2 = rs2->begin();
-    while (it2 != rs2->end()) {
-        res->push_back(*it2);
-        ++it2;
-    }
-    delete rs1;
     delete rs2;
-    return *res;
+    return *rs1;
 }
-
 
 Respuesta &BaseDeDatos::productAux(const Consulta &q1, const Consulta &q2) {
     Respuesta *res = new Respuesta;
     Respuesta *rs1 = &realizarConsulta(q1);
     Respuesta *rs2 = &realizarConsulta(q2);
-    auto it1 = rs1->begin();
-    while (it1 != rs1->end()) {
-        auto it2 = rs2->begin();
-        while (it2 != rs2->end()) {
+    for (const Registro &r1 : *rs1) {
+        for (const Registro &r2 : *rs2) {
             Registro rNuevo;
-            Registro r1 = *it1;
-            Registro r2 = *it2;
-            linear_set<NombreCampo>::const_iterator itCamp1 = r1.campos().begin();
+            auto itCamp1 = r1.campos().begin();
             while (itCamp1 != r1.campos().end()) {
                 NombreCampo c = *itCamp1;
                 rNuevo.definir(c, r1[c]);
                 ++itCamp1;
             }
-            linear_set<NombreCampo>::const_iterator itCamp2 = r2.campos().begin();
+            auto itCamp2 = r2.campos().begin();
             while (itCamp2 != r2.campos().end()) {
                 NombreCampo c = *itCamp2;
                 rNuevo.definir(c, r2[c]);
                 ++itCamp2;
             }
             res->push_back(rNuevo);
-            ++it2;
         }
-        ++it1;
     }
     delete rs1;
     delete rs2;
