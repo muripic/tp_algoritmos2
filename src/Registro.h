@@ -16,9 +16,12 @@ public:
     Valor& operator[](const NombreCampo& campo);
     const Valor& operator[](const NombreCampo& campo) const;
     bool operator==(const Registro& registro) const;
+    void borrarCampo(const NombreCampo &campo);
+
 
 private:
     string_map<Valor> _registro;
+
 };
 
 #endif /*__REGISTRO_H__*/
