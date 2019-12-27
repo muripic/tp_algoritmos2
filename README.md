@@ -1,7 +1,6 @@
-Cambios:
-1) linear_set está implementado sobre linear_map<T, bool> y para hacer erase necesita comparar la clave T.
-Por eso es necesario contar con el operador de comparación == en el módulo registro.
-2) Se sobrecargó el operador [] en el módulo registro (una versión modificable y otra no) para poder utilizarlo
-en el módulo Driver.
-3) Se cambió el tipo del conjunto de registros resultante de una consulta de linear_set a Respuesta para que sea
-compatible con Driver (sin tener que volver a copiar los registros).
+**Trabajos prácticos de la materia Algoritmos y Estructuras de Datos 2 de la carrera de Ciencias de la Computación de la UBA (2do cuatrimestre 2019)**
+
+El objetivo de este TP era especificar, diseñar e implementar una base de datos que permitiera almacenar información de manera estructurada y hacer consultas sobre grandes volúmenes de datos de manera eficiente.
+El resultado final fue producto de una sucesión de tres trabajos prácticos, correspondientes a las etapas de especificación, diseño e implementación.
+
+***Nota sobre la organización del repositorio***: Los documentos con la especificación y el diseño de los módulos se encuentran en las carpetas TP1 Especificación y TP2 Diseño. El resto de los archivos corresponde al TP3, la implementación de la base de datos en C++.
